@@ -1,0 +1,11 @@
+Controladores
+ Post_Controller
+
+
+Modelos
+ Post_Modelo
+
+Vistas
+ Post_List
+ 
+ 1M - 1C - 1V
