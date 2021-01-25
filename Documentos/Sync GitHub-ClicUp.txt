@@ -1,2 +1,6 @@
 * Cambiar estado de tarea en un commit, agregando  CU-taskid[status] ej: CU-1234[closed]
-en el título
+en el TÍTULO, no comentario, sin importar el orden, ej:
+- CU-374v33[POR INICIAR] agrega xx.html
+- corrección de app.py CU-374v33[CORRECCIÓN]
+- archivo.css y tarea CU-374v33[REVISIÓN] se comentan para arreglar
+
