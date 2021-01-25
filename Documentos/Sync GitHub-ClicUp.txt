@@ -1,0 +1,1 @@
+* Cambiar estado de tarea en un commit, agregando  CU-taskid[status] ej: CU-1234[closed]
