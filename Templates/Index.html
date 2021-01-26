@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<h2>ESCRIBE BLOG POSTS</h2>
+
+<form class="login-form" action="{{ url_for('crear_usuario') }}" method="post">
+	<input type="text" name="nombres" placeholder="nombres">
+    <input type="text" name="apellido_paterno" placeholder="apellido_paterno">
+    <input type="text" name="apellido_materno" placeholder="apellido_materno">
+    <input type="email" name="correo" placeholder="correo">
+    <input type="password" name="contraseña" placeholder="contraseña">
+    <input type="tel" name="telefono" placeholder="telefono">
+
+	<input type="submit" name="submit">
+</form>
+
+{% endblock %}

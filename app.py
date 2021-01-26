@@ -28,6 +28,32 @@ class Usuario(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
     estado = db.Column(db.Boolean, nullable=False)
+
+
+@app.route("/")
+def inicio():	 
+	return render_template("Index.html")
+
+@app.route("/crear", methods=["POST"])
+def crear_usuario():
+    nombres = request.form.get("nombres")    
+    fk_rol = 1
+    apellido_paterno = request.form.get("apellido_paterno")
+    apellido_materno = request.form.get("apellido_materno")
+    correo = request.form.get("correo")
+    contraseña= request.form.get("contraseña")
+    telefono = request.form.get("telefono")
+    estado = True
+    usuario = Usuario(nombres=nombres, apellido_paterno=apellido_paterno,
+                     fk_rol = fk_rol, 
+                     apellido_materno=apellido_materno,
+                     correo=correo,
+                     contraseña=contraseña,
+                     telefono=telefono,
+                     estado=estado)
+    db.session.add(usuario)
+    db.session.commit()
+    return redirect("/")
  
 if __name__ == "__main__":
     with app.app_context():
