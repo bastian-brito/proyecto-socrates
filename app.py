@@ -12,12 +12,20 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def inicio():
-    return render_template("Index.html")
+    return render_template('Index.html')
+
+@app.route("/ncrs")
+def ncrs():
+    return render_template('ncrs.html')
+
+@app.route("/nuevo_usuario")
+def nuevo_usuario():
+    return render_template('nuevo_usuario.html')
 
 @app.route("/crear", methods=["POST"])
 def crear_usuario():
     nombres          = request.form.get("nombres")    
-    fk_rol = 1
+    fk_rol           = 1
     apellido_paterno = request.form.get("apellido_paterno")
     apellido_materno = request.form.get("apellido_materno")
     correo           = request.form.get("correo")
@@ -36,6 +44,8 @@ def crear_usuario():
     db.session.add(usuario)
     db.session.commit()
     return redirect("/")
+
+
     
 if __name__ == "__main__":
         with app.app_context():
