@@ -13,4 +13,4 @@ class Rol_Aplicacion(db.Model):
     nombres = db.Column(db.String(30), nullable=False)
     descripcion = db.Column(db.String(60), nullable=False)
     estado = db.Column(db.Boolean, nullable=False)
-    usuarios = db.relationship('Usuario', backref='roles_aplicacion', lazy=True)
+    usuarios = db.relationship("Usuarios", backref='roles_aplicacion', lazy=True)

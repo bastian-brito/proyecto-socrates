@@ -20,3 +20,4 @@ class Usuario(db.Model):
     telefono = db.Column(db.Integer, nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
     estado = db.Column(db.Boolean, nullable=False)
+    #roles_aplicacion = db.relationship(Rol_Aplicacion, backref=backref('usuarios', uselist=True))

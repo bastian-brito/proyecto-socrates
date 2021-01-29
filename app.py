@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
 from Modelo.Rol_Aplicacion import Rol_Aplicacion
 from Modelo.Usuario import Usuario
 
@@ -22,7 +21,8 @@ def ncrs():
 def nuevo_usuario():
     return render_template('nuevo_usuario.html')
 
-@app.route("/crear", methods=["POST"])
+#@app.route("/crear", methods=["POST"])
+@app.route("/nuevo_usuario", methods=["POST"])
 def crear_usuario():
     nombres          = request.form.get("nombres")    
     fk_rol           = 1
@@ -33,14 +33,14 @@ def crear_usuario():
     telefono         = request.form.get("telefono")
     estado           = True
     usuario = Usuario(
-                     nombres          =nombres,
-                     apellido_paterno =apellido_paterno,
-                     fk_rol           =fk_rol,
-                     apellido_materno =apellido_materno,
-                     correo           =correo,
-                     contraseña       =contraseña,
-                     telefono         =telefono,
-                     estado           =estado)
+                     nombres          = nombres,
+                     apellido_paterno = apellido_paterno,
+                     fk_rol           = fk_rol,
+                     apellido_materno = apellido_materno,
+                     correo           = correo,
+                     contraseña       = contraseña,
+                     telefono         = telefono,
+                     estado           = estado)
     db.session.add(usuario)
     db.session.commit()
     return redirect("/")
