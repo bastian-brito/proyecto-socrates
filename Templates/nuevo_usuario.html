@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
+</div>
+
+<form action="{{ url_for('crear_usuario') }}" method="post">
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingNombre" name="nombres" placeholder="Juanito Andrés">
+		<label for="floatingNombre">Nombres</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingApellidoP" name="apellido_paterno" placeholder="Fernandez">
+		<label for="floatingApellidoP">Apellido Paterno</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingApellidoM" name="apellido_materno" placeholder="Valenzuela">
+		<label for="floatingApellidoM">Apellido Materno</label>
+	</div>
+	<div class="form-floating mb-3">
+ 		<input type="email" class="form-control" id="floatingEmail" name="correo" placeholder="name@example.com">
+  		<label for="floatingEmail">Email</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="password" class="form-control" id="floatingPassword" name="contraseña" placeholder="8 a 20 carácteres">
+		<label for="floatingPassword">Crear Contraseña</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="password" class="form-control" id="floatingPasswordConfirm" name="contraseña_confirm" placeholder="8 a 20 carácteres">
+		<label for="floatingPasswordConfirm">Confirmar Contraseña</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="floatingTelefono" name="telefono" placeholder="9 8765 4321">
+		<label for="floatingTelefono">Teléfono</label>
+	</div>
+	<div class="col-auto">
+    	<button type="submit" class="btn btn-primary mb-3">Crear Usuario</button>
+  	</div>
+</form>
+
+{% endblock %}
