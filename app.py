@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
-from datetime import datetime
-from Modelo.Rol_Aplicacion import Rol_Aplicacion
-from Modelo.Usuario import Usuario
+from Modelo.Modelos import *
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
