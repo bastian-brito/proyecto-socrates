@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_sqlalchemy import SQLAlchemy
 from Modelo.Modelos import *
+from formulario import IngresaUsuario
 
 app = Flask(__name__)
 app.secret_key = "Secret Key"
@@ -17,11 +18,15 @@ def inicio():
 def nuevo_usuario():    
     return render_template("nuevo_usuario.html")
 
+# @app.route("/nuevo_usuario_wtform")
+# def nuevo_usuario_wtform():    
+#     return render_template("nuevo_usuario_wtform.html")
+
 #this is our update route where we are going to update our employee
 @app.route('/update', methods = ['GET', 'POST'])
 def update():
  
-    if request.method == 'POST':
+    if request.method == 'POST' :
         usuario = Usuario.query.get(request.form.get('id'))
  
         usuario.nombres = request.form['nombres']
@@ -38,6 +43,25 @@ def update():
 def lista_usuarios():
     usuarios = Usuario.query.order_by(Usuario.fecha_creacion.asc()).all() 
     return render_template("lista_usuarios.html", usuarios=usuarios)
+
+@app.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
+def registrar_usuario():
+    form = IngresaUsuario(request.form)
+    if request.method ==  'POST' and form.validate():
+        usuario =   Usuario(
+                    nombres = form.nombres.data,
+                    fk_rol  =  1,
+                    apellido_paterno =  form.apellido_paterno.data,
+                    apellido_materno =  form.apellido_materno.data,
+                    correo =  form.correo.data,
+                    contraseña =  form.contraseña.data,
+                    telefono =  form.telefono.data,
+                    estado =  True)
+        db.session.add(usuario)
+        db.session.commit()
+        flash('Registro completo')
+        return redirect("/")
+    return render_template('nuevo_usuario_wtform.html', form=form)
 
 
 @app.route("/nuevo_usuario", methods=["POST"])
