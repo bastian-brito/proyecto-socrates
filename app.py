@@ -2,15 +2,46 @@ from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from Modelo.Modelos import *
 
+
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
-
 @app.route("/")
 def inicio():    
     return render_template("Index.html")
+
+#this is our update route where we are going to update our employee
+
+@app.route("/lista_usuarios")
+def lista_usuarios():
+    usuarios = Usuario.query.order_by(Usuario.fecha_creacion.asc()).all() 
+    return render_template("lista_usuarios.html", usuarios=usuarios)
+
+@app.route("/editar_usuario/<int:id>", methods=['POST','GET'] )
+def editar_usuario(id):
+    usuario = Usuario.query.get_or_404(id)
+    if request.method == "POST":
+        #usuario.nombres = request.form['nombres']
+        usuario.nombres = request.form.get("nombres") 
+        usuario.apellido_paterno = request.form.get("apellido_paterno")
+        usuario.apellido_materno = request.form.get("apellido_materno")
+        usuario.correo = request.form.get("correo")
+        usuario.contraseña= request.form.get("contraseña")
+        usuario.telefono = request.form.get("telefono")
+        try:
+            db.session.merge(usuario)
+            db.session.flush()
+            db.session.commit()
+            return redirect('/lista_usuarios')
+        except: 
+            return "error al actualizar"
+    else:
+        return render_template('editar_usuario.html', usuario=usuario)
+        
+
+    return render_template("editar_usuario.html", )
 
 @app.route("/nuevo_usuario")
 def nuevo_usuario():    

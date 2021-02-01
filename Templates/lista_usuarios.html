@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+	<h2 class="text-center py-4">LISTA DE USUARIOS</h2>
+</div>
+<div class="container">
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nombres</th>
+      <th scope="col">Apellido Paterno</th>
+      <th scope="col">Apellido Materno</th>
+      <th scope="col">Rol Usuario</th>
+      <th scope="col">Opcion Editar</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+  	{% for usuario in usuarios %}
+    <tr>    
+      <th scope="row">{{ usuario.id }}</th>
+      <td>{{ usuario.nombres }}</td>
+      <td>{{ usuario.apellido_paterno }}</td>
+      <td>{{ usuario.apellido_materno }}</td>
+      <td>{{ usuario.roles_aplicacion.nombres }}</td> 
+      <td><a href="/editar_usuario/{{usuario.id}}" class="btn btn-warning btn-xs">Editar</a> </td>
+   
+    </tr>
+    {% endfor %} 
+       
+  </tbody>
+</table>
+
+</div>
+
+{% endblock %}

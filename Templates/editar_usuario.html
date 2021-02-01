@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+	<h2 class="text-center py-4">EDITAR USUARIO</h2>
+</div>
+
+<form action="/editar_usuario/{{usuario.id}}" method="post">
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingNombre" name="nombres" value="{{usuario.nombres}}">
+		<label for="floatingNombre">Nombres</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingApellidoP" name="apellido_paterno" value="{{usuario.apellido_paterno}}">
+		<label for="floatingApellidoP">Apellido Paterno</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingApellidoM" name="apellido_materno" value="{{usuario.apellido_materno}}">
+		<label for="floatingApellidoM">Apellido Materno</label>
+	</div>
+	<div class="form-floating mb-3">
+ 		<input type="email" class="form-control" id="floatingEmail" name="correo" value="{{usuario.correo}}">
+  		<label for="floatingEmail">Email</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="password" class="form-control" id="floatingPassword" name="contraseña" value="{{usuario.contraseña}}">
+		<label for="floatingPassword">Actualizar Contraseña</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="password" class="form-control" id="floatingPasswordConfirm" value="{{usuario.contraseña}}">
+		<label for="floatingPasswordConfirm">Confirmar Contraseña</label>
+	</div>
+	<div class="form-floating mb-3">
+		<input type="number" class="form-control" id="floatingTelefono" name="telefono" value="{{usuario.telefono}}">
+		<label for="floatingTelefono">Teléfono</label>
+	</div>
+	<div class="col-auto">
+    	<button type="submit" class="btn btn-primary mb-3">Actualizar Usuario</button>
+  	</div>
+</form>
+
+{% endblock %}

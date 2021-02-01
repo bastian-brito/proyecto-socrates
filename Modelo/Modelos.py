@@ -7,7 +7,6 @@ Created on Tue Jan 26 17:49:37 2021
 
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import backref
 db = SQLAlchemy()
 
 class Rol_Aplicacion(db.Model):
@@ -27,8 +26,7 @@ class Red_Social(db.Model):
     descripcion = db.Column(db.String(60), nullable=False)
     link = db.Column(db.String(60), nullable=False)    
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
-    estado = db.Column(db.Boolean, nullable=False)
-    #usuarios = db.relationship('Usuario', secondary='usuarios_redes_sociales')
+    estado = db.Column(db.Boolean, nullable=False)    
     usuarios = db.relationship('Usuario_Red_Social', backref='redes_sociales', lazy=True)
 
 class Usuario(db.Model):
@@ -42,8 +40,7 @@ class Usuario(db.Model):
     contraseña= db.Column(db.String(60), nullable=False)
     telefono = db.Column(db.Integer, nullable=False)
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
-    estado = db.Column(db.Boolean, nullable=False)
-    #red_socials = db.relationship(Red_Social, secondary='usuarios_redes_sociales')
+    estado = db.Column(db.Boolean, nullable=False)    
     red_socials = db.relationship('Usuario_Red_Social', backref='usuarios', lazy=True)
 
 class Usuario_Red_Social(db.Model):
