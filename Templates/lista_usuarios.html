@@ -3,7 +3,7 @@
 {% block body %}	
 
 <div class="container">
-	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
+	<h2 class="text-center py-4">LISTA DE USUARIOS</h2>
 </div>
 
 <div class="container">
@@ -29,7 +29,7 @@
 				<td>{{usuario.nombres}}</td>
 				<td>{{usuario.apellido_paterno}}</td>
 				<td>{{usuario.apellido_materno}}</td>
-				<td>{{usuario.rol}}</td>
+				<td>{{usuario.roles_aplicacion.nombres}}</td>
 				<td>{{usuario.correo}}</td>
 				<td>{{usuario.contraseña}}</td>	
 				<td>{{usuario.telefono}}</td>				

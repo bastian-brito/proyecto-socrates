@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block body %}	
+
+<div class="container">
+	<h2 class="text-center py-4">LISTA ROLES APLICACION</h2>
+</div>
+
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Descripción</th>
+				<th scope="col">Fecha creación</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Acción</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for rol_aplicacion in roles_aplicacion %}
+			<tr>				
+				<th scope="row">{{rol_aplicacion.id}}</th>
+				<td>{{rol_aplicacion.nombres}}</td>
+				<td>{{rol_aplicacion.descripcion}}</td>
+				<td>{{rol_aplicacion.fecha_creacion}}</td>
+				<td>{{rol_aplicacion.estado}}</td>
+				
+			</tr>
+
+			
+
+
+			{%endfor%}
+		</tbody>
+	</table>
+</div>
+
+
+{% endblock %}

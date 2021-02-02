@@ -7,7 +7,6 @@ Created on Tue Jan 26 17:49:37 2021
 
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import backref
 db = SQLAlchemy()
 
 class Rol_Aplicacion(db.Model):

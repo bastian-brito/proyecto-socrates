@@ -44,6 +44,12 @@ def lista_usuarios():
     usuarios = Usuario.query.order_by(Usuario.fecha_creacion.asc()).all() 
     return render_template("lista_usuarios.html", usuarios=usuarios)
 
+@app.route("/lista_roles")
+def lista_roles():
+    roles_aplicacion = Rol_Aplicacion.query.order_by(Rol_Aplicacion.fecha_creacion.asc()).all() 
+    return render_template("lista_roles.html", roles_aplicacion=roles_aplicacion)
+
+
 @app.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
 def registrar_usuario():
     form = IngresaUsuario(request.form)
