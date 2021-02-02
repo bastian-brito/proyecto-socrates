@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+
+{% block body %}	
+
+<div class="container">
+	<h2 class="text-center py-4">LISTA DE USUARIOS</h2>
+</div>
+
+<div class="container">
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Nombres</th>
+				<th scope="col">A. Paterno</th>
+				<th scope="col">A. Materno</th>
+				<th scope="col">ID Rol</th>
+				<th scope="col">Email</th>
+				<th scope="col">Contraseña</th>
+				<th scope="col">Teléfono</th>
+				<th scope="col">Estado</th>
+				<th scope="col">Acción</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for usuario in usuarios %}
+			<tr>				
+				<th scope="row">{{usuario.id}}</th>
+				<td>{{usuario.nombres}}</td>
+				<td>{{usuario.apellido_paterno}}</td>
+				<td>{{usuario.apellido_materno}}</td>
+				<td>{{usuario.roles_aplicacion.nombres}}</td>
+				<td>{{usuario.correo}}</td>
+				<td>{{usuario.contraseña}}</td>	
+				<td>{{usuario.telefono}}</td>				
+				<td>{{usuario.estado}}</td>
+				<td>
+					<a href="/update/{{usuario.id}}" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modaledit{{usuario.id}}">Editar</a> 
+				</td>
+			</tr>
+
+			<div id="modaledit{{usuario.id}}" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+
+
+					<div class="modal-content">
+
+
+						<div class="modal-header">
+
+
+							<h4 class="modal-title">Actualizar Information</h4>
+
+
+						</div>
+
+
+						<div class="modal-body">
+
+
+							<form action="{{url_for('update')}}" method="POST">
+
+
+								<div class="form-group">
+
+
+									<label>Nombres:</label>
+									<input type="hidden"  name="id" value="{{usuario.id}}">
+
+									<input type="text" class="form-control" name="nombres" value="{{usuario.nombres}}">
+
+
+								</div>
+
+
+
+								<div class="form-group">
+
+
+									<label>Apellido Paterno:</label>
+
+									<input type="text" class="form-control" name="apellido_paterno" value="{{usuario.apellido_paterno}}">
+
+
+								</div>
+
+
+								<div class="form-group">
+
+
+									<label>Correo:</label>
+
+									<input type="mail" class="form-control" name="correo" value="{{usuario.correo}}">
+
+
+								</div>
+
+
+								<div class="form-group">
+
+
+									<button class="btn btn-primary" type="submit">Update</button>
+
+
+								</div>
+
+
+							</form>
+
+
+						</div>
+
+
+						<div class="modal-footer">
+
+
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+
+						</div>
+
+
+					</div>
+
+
+				</div>
+
+			</div>
+
+
+			{%endfor%}
+		</tbody>
+	</table>
+</div>
+
+
+{% endblock %}
