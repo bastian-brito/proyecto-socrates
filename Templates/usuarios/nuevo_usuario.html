@@ -6,7 +6,7 @@
 	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
 </div>
 
-<form action="{{ url_for('crear_usuario') }}" method="post">
+<form action="{{ url_for('usuarios.crear_usuario') }}" method="post">
 	<div class="form-floating mb-3">
 		<input type="text" class="form-control" id="floatingNombre" name="nombres" placeholder="Juanito Andrés">
 		<label for="floatingNombre">Nombres</label>

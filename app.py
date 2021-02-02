@@ -10,35 +10,38 @@ app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+#Aqui se importa la referencia Blue print de Usuarios
+from Controladores.Usuarios_Controler import usuarios_bp
+app.register_blueprint(usuarios_bp)
 
 @app.route("/")
 def inicio():    
     return render_template("Index.html")
 
-@app.route("/nuevo_usuario")
-def nuevo_usuario():    
-    return render_template("nuevo_usuario.html")
+# @app.route("/nuevo_usuario")
+# def nuevo_usuario():    
+#     return render_template("nuevo_usuario.html")
 
-@app.route('/update', methods = ['GET', 'POST'])
-def update():
+# @app.route('/update', methods = ['GET', 'POST'])
+# def update():
  
-    if request.method == 'POST' :
-        usuario = Usuario.query.get(request.form.get('id'))
+#     if request.method == 'POST' :
+#         usuario = Usuario.query.get(request.form.get('id'))
  
-        usuario.nombres = request.form['nombres']
-        usuario.apellido_paterno = request.form['apellido_paterno']
-        usuario.correo = request.form['correo']
-        db.session.merge(usuario)
-        db.session.flush()
-        db.session.commit()
-        flash("Usuario actualizado")
+#         usuario.nombres = request.form['nombres']
+#         usuario.apellido_paterno = request.form['apellido_paterno']
+#         usuario.correo = request.form['correo']
+#         db.session.merge(usuario)
+#         db.session.flush()
+#         db.session.commit()
+#         flash("Usuario actualizado")
  
-        return redirect(url_for('lista_usuarios'))
+#         return redirect(url_for('lista_usuarios'))
 
-@app.route("/lista_usuarios")
-def lista_usuarios():
-    usuarios = Usuario.query.order_by(Usuario.fecha_creacion.asc()).all() 
-    return render_template("lista_usuarios.html", usuarios=usuarios)
+# @app.route("/lista_usuarios")
+# def lista_usuarios():
+#     usuarios = Usuario.query.order_by(Usuario.fecha_creacion.asc()).all() 
+#     return render_template("lista_usuarios.html", usuarios=usuarios)
 
 @app.route("/lista_roles")
 def lista_roles():
@@ -66,27 +69,27 @@ def registrar_usuario():
     return render_template('nuevo_usuario_wtform.html', form=form)
 
 
-@app.route("/nuevo_usuario", methods=["POST"])
-def crear_usuario():
-    nombres          = request.form.get("nombres")    
-    fk_rol           = 1
-    apellido_paterno = request.form.get("apellido_paterno")
-    apellido_materno = request.form.get("apellido_materno")
-    correo           = request.form.get("correo")
-    contraseña       = request.form.get("contraseña")
-    telefono         = request.form.get("telefono")
-    estado           = True
-    usuario          = Usuario(nombres=nombres,
-                            apellido_paterno=apellido_paterno,
-                            fk_rol = fk_rol, 
-                            apellido_materno=apellido_materno,
-                            correo=correo,
-                            contraseña=contraseña,
-                            telefono=telefono,
-                            estado=estado)
-    db.session.add(usuario)
-    db.session.commit()
-    return redirect("/")
+# @app.route("/nuevo_usuario", methods=["POST"])
+# def crear_usuario():
+#     nombres          = request.form.get("nombres")    
+#     fk_rol           = 1
+#     apellido_paterno = request.form.get("apellido_paterno")
+#     apellido_materno = request.form.get("apellido_materno")
+#     correo           = request.form.get("correo")
+#     contraseña       = request.form.get("contraseña")
+#     telefono         = request.form.get("telefono")
+#     estado           = True
+#     usuario          = Usuario(nombres=nombres,
+#                             apellido_paterno=apellido_paterno,
+#                             fk_rol = fk_rol, 
+#                             apellido_materno=apellido_materno,
+#                             correo=correo,
+#                             contraseña=contraseña,
+#                             telefono=telefono,
+#                             estado=estado)
+#     db.session.add(usuario)
+#     db.session.commit()
+#     return redirect("/")
  
 if __name__ == "__main__":    
     app.run(debug=True)
