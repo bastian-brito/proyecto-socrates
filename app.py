@@ -21,6 +21,7 @@ def nuevo_usuario():
 # @app.route("/nuevo_usuario_wtform")
 # def nuevo_usuario_wtform():    
 #     return render_template("nuevo_usuario_wtform.html")
+#tenalsndlasd
 
 #this is our update route where we are going to update our employee
 @app.route('/update', methods = ['GET', 'POST'])
