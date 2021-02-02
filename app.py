@@ -4,7 +4,7 @@ from Modelo.Modelos import *
 from formulario import IngresaUsuario
 
 app = Flask(__name__)
-app.secret_key = "Secret Key"
+#app.secret_key = "Secret Key"
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
