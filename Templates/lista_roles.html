@@ -29,12 +29,88 @@
 				
 			</tr>
 
+<<<<<<< Updated upstream
 			
 
+=======
+			<div id="modaledit{{rol_aplicacion.id}}" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">Actualizar Information</h4>
+						</div>
+						<div class="modal-body">
+							<form action="{{url_for('roles_aplicacion.actualizar_rol')}}" method="POST">
+								<div class="form-group">
+									<label>Nombres:</label>
+									<input type="hidden"  name="id" value="{{rol_aplicacion.id}}">
+									<input type="text" class="form-control" name="nombres" value="{{rol_aplicacion.nombres}}">
+								</div>
+								<div class="form-group">
+									<label>Descripción:</label>
+									<input type="text" class="form-control" name="descripcion" value="{{rol_aplicacion.descripcion}}">
+								</div>
+								<div class="form-group">
+									<label>Fecha Creación:</label>
+									<input type="text" class="form-control" name="fecha_creacion" value="{{rol_aplicacion.fecha_creacion}}">
+								</div>
+								<div class="form-check form-switch">
+									<label class="form-check-label" for="estado">Estado: {{rol_aplicacion.estado}}</label>
+									{% if rol_aplicacion.estado == True %}
+									<input type="checkbox" class="form-check-input" id="estado" name="estado" value=True checked>
+									{% else %}
+									<input type="checkbox" class="form-check-input" name="estado" value=True>
+									{% endif %}
+								</div>
+								<div class="form-group">
+									<button class="btn btn-primary" type="submit">Update</button>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						</div>
+					</div>
+				</div>
+			</div>
+>>>>>>> Stashed changes
 
 			{%endfor%}
 		</tbody>
 	</table>
+<<<<<<< Updated upstream
+=======
+	<div class="col-auto">
+		<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalcreate">Crear Rol</button>
+	</div>
+	<div id="modalcreate" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Crear Rol</h4>
+				</div>
+				<div class="modal-body">
+					<form action="{{url_for('roles_aplicacion.crear_rol')}}" method="POST">
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="floatingNombre" name="nombres" placeholder="Nombre de Rol">
+							<label for="floatingNombre">Nombre</label>
+						</div>
+						<div class="form-floating mb-3">
+							<input type="text" class="form-control" id="floatingDescripcion" name="descripcion" placeholder="Descripción">
+							<label for="floatingDescripcion">Descripción</label>
+						</div>
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit">Crear Rol</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+>>>>>>> Stashed changes
 </div>
 
 

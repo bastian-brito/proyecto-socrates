@@ -3,9 +3,19 @@ from flask_sqlalchemy import SQLAlchemy
 from Modelo.Modelos import *
 from formulario import IngresaUsuario
 from flask_migrate import Migrate
+from flask_login import LoginManager
 
 app = Flask(__name__)
+<<<<<<< Updated upstream
 app.secret_key = "Secret Key"
+=======
+
+# Esta X eliminarse esta linea , no hay manejo de sesiones aun
+app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
+login_manager = LoginManager(app)
+
+#Esta por dejar de existir en esta script -> se muda a config.py
+>>>>>>> Stashed changes
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
