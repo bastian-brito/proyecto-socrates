@@ -6,6 +6,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
+from app import login_manager
 from app import db
 
 
@@ -83,3 +84,7 @@ def login():
             login_user(user, remember=form.remember_me.data)
             return render_template("Index.html")
     return render_template('usuarios/login_usuario.html', form=form)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Usuario.get_by_id(int(user_id))

@@ -1,8 +1,8 @@
 """Initial database
 
-Revision ID: 24722ef4a536
+Revision ID: c4fa4b2ac064
 Revises: 
-Create Date: 2021-02-01 11:14:51.684251
+Create Date: 2021-02-03 19:10:26.904976
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '24722ef4a536'
+revision = 'c4fa4b2ac064'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,18 +37,18 @@ def upgrade():
     )
     op.create_table('usuarios',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('nombres', sa.String(length=60), nullable=False),
+    sa.Column('name', sa.String(length=80), nullable=False),
     sa.Column('fk_rol', sa.Integer(), nullable=False),
     sa.Column('apellido_paterno', sa.String(length=30), nullable=False),
     sa.Column('apellido_materno', sa.String(length=30), nullable=False),
-    sa.Column('correo', sa.String(length=60), nullable=True),
-    sa.Column('contraseña', sa.String(length=60), nullable=False),
+    sa.Column('email', sa.String(length=256), nullable=False),
+    sa.Column('password', sa.String(length=128), nullable=False),
     sa.Column('telefono', sa.Integer(), nullable=False),
     sa.Column('fecha_creacion', sa.DateTime(), nullable=True),
     sa.Column('estado', sa.Boolean(), nullable=False),
     sa.ForeignKeyConstraint(['fk_rol'], ['roles_aplicacion.id'], ),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('correo')
+    sa.UniqueConstraint('email')
     )
     op.create_table('usuarios_redes_sociales',
     sa.Column('fk_usuario', sa.Integer(), nullable=False),
