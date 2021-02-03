@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from Modelo.Modelos import *
 from formulario import IngresaUsuario
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from alembic import op
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
@@ -31,6 +32,14 @@ def inicio():
 # def lista_roles():
 #     roles_aplicacion = Rol_Aplicacion.query.order_by(Rol_Aplicacion.fecha_creacion.asc()).all() 
 #     return render_template("lista_roles.html", roles_aplicacion=roles_aplicacion)
+
+
+@app.route("/columna")
+def columna():
+
+    op.alter_column('roles_aplicacion', column_name='nombres', new_column_name='nombre')
+    print('listo!')
+    return redirect("/")
 
 @app.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
 def registrar_usuario():
