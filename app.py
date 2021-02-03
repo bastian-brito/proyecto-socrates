@@ -21,14 +21,18 @@ migrate = Migrate(app, db)
 from Controladores.Usuarios_Controler import usuarios_bp
 app.register_blueprint(usuarios_bp)
 
+#Aqui se importa la referencia Blue print de Roles de Aplicación
+from Controladores.Roles_Aplicacion_Controller import roles_aplicacion_bp
+app.register_blueprint(roles_aplicacion_bp)
+
 @app.route("/")
 def inicio():    
     return render_template("Index.html")
 
-@app.route("/lista_roles")
-def lista_roles():
-    roles_aplicacion = Rol_Aplicacion.query.order_by(Rol_Aplicacion.fecha_creacion.asc()).all() 
-    return render_template("lista_roles.html", roles_aplicacion=roles_aplicacion)
+# @app.route("/lista_roles")
+# def lista_roles():
+#     roles_aplicacion = Rol_Aplicacion.query.order_by(Rol_Aplicacion.fecha_creacion.asc()).all() 
+#     return render_template("lista_roles.html", roles_aplicacion=roles_aplicacion)
 
 @app.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
 def registrar_usuario():

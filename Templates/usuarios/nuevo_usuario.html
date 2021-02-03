@@ -24,12 +24,13 @@
 		<label for="floatingEmail">Email</label>
 	</div>
 	<div class="form-floating mb-3">
-		<select class="form-select" id="floating" name="rol_aplicacion" aria-label="Selecciona un rol, ejemplo">
+		<select class="form-select" id="floatingRol" name="rol_aplicacion" aria-label="Selecciona un rol, ejemplo">
 			<option selected>Selecciona uno</option>
 			{% for rol_aplicacion in roles_aplicacion %}
 			<option value={{rol_aplicacion.id}}>{{rol_aplicacion.nombres}}</option>
 			{%endfor%}
 		</select>
+		<label for="floatingRol">Rol Aplicación</label>
 	</div>
 	<label for="floatingRol">Rol Aplicación</label>
 </div>

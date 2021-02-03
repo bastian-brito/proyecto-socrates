@@ -20,7 +20,7 @@ def update():
         usuario.apellido_paterno = request.form['apellido_paterno']
         usuario.apellido_materno = request.form['apellido_materno']
         usuario.correo           = request.form['correo']
-        usuario.fk_rol           = request.form['fk_rol']
+        usuario.fk_rol           = request.form['rol_aplicacion']
         usuario.contraseña       = request.form['contraseña']
         if request.form.get('estado') == 'True':
             usuario.estado = 1
