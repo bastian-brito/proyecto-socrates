@@ -20,24 +20,34 @@
 		<label for="floatingApellidoM">Apellido Materno</label>
 	</div>
 	<div class="form-floating mb-3">
- 		<input type="email" class="form-control" id="floatingEmail" name="correo" placeholder="name@example.com">
-  		<label for="floatingEmail">Email</label>
+		<input type="email" class="form-control" id="floatingEmail" name="correo" placeholder="name@example.com">
+		<label for="floatingEmail">Email</label>
 	</div>
 	<div class="form-floating mb-3">
-		<input type="password" class="form-control" id="floatingPassword" name="contraseña" placeholder="8 a 20 carácteres">
-		<label for="floatingPassword">Crear Contraseña</label>
+		<select class="form-select" id="floating" name="rol_aplicacion" aria-label="Selecciona un rol, ejemplo">
+			<option selected>Selecciona uno</option>
+			{% for rol_aplicacion in roles_aplicacion %}
+			<option value={{rol_aplicacion.id}}>{{rol_aplicacion.nombres}}</option>
+			{%endfor%}
+		</select>
 	</div>
-	<div class="form-floating mb-3">
-		<input type="password" class="form-control" id="floatingPasswordConfirm" name="contraseña_confirm" placeholder="8 a 20 carácteres">
-		<label for="floatingPasswordConfirm">Confirmar Contraseña</label>
-	</div>
-	<div class="form-floating mb-3">
-		<input type="number" class="form-control" id="floatingTelefono" name="telefono" placeholder="9 8765 4321">
-		<label for="floatingTelefono">Teléfono</label>
-	</div>
-	<div class="col-auto">
-    	<button type="submit" class="btn btn-primary mb-3">Crear Usuario</button>
-  	</div>
+	<label for="floatingRol">Rol Aplicación</label>
+</div>
+<div class="form-floating mb-3">
+	<input type="password" class="form-control" id="floatingPassword" name="contraseña" placeholder="8 a 20 carácteres">
+	<label for="floatingPassword">Crear Contraseña</label>
+</div>
+<div class="form-floating mb-3">
+	<input type="password" class="form-control" id="floatingPasswordConfirm" name="contraseña_confirm" placeholder="8 a 20 carácteres">
+	<label for="floatingPasswordConfirm">Confirmar Contraseña</label>
+</div>
+<div class="form-floating mb-3">
+	<input type="number" class="form-control" id="floatingTelefono" name="telefono" placeholder="9 8765 4321">
+	<label for="floatingTelefono">Teléfono</label>
+</div>
+<div class="col-auto">
+	<button type="submit" class="btn btn-primary mb-3">Crear Usuario</button>
+</div>
 </form>
 
 {% endblock %}

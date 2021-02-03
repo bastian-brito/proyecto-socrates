@@ -30,7 +30,7 @@ class Red_Social(db.Model):
     usuarios       = db.relationship('Usuario_Red_Social', backref='redes_sociales', lazy=True)
 
 class Usuario(db.Model):
-    __tablename__ = "usuarios"
+    __tablename__    = "usuarios"
     id               = db.Column(db.Integer, primary_key=True)
     nombres          = db.Column(db.String(60), nullable=False)
     fk_rol           = db.Column(db.Integer, db.ForeignKey('roles_aplicacion.id'), nullable=False)

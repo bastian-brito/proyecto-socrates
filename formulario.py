@@ -1,5 +1,5 @@
 from wtforms import Form
-from wtforms import StringField, PasswordField, validators, IntegerField
+from wtforms import StringField, PasswordField, validators, IntegerField, BooleanField
 from wtforms.fields.html5 import EmailField
 
 class IngresaUsuario(Form):
@@ -13,4 +13,4 @@ class IngresaUsuario(Form):
 									validators.EqualTo("contraseña", message="Contraseñas deben coincidir")],
 									id="confirma_contraseña")
 		fk_rol				=	1
-		estado				=	True
+		estado				=	BooleanField("estado")
