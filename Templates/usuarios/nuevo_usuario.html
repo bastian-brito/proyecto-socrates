@@ -5,7 +5,19 @@
 <div class="container">
 	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
 </div>
-
+<form class="row g-3">
+  <div class="col-auto">
+    <label for="staticEmail2" class="visually-hidden">Email</label>
+    <input type="text"  class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+  </div>
+  <div class="col-auto">
+    <label for="inputPassword2" class="visually-hidden">Password</label>
+    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+  </div>
+</form>
 <form action="{{ url_for('usuarios.crear_usuario') }}" method="post">
 	<div class="form-floating mb-3">
 		<input type="text" class="form-control" id="floatingNombre" name="nombres" placeholder="Juanito Andrés">
