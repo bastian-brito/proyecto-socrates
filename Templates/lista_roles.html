@@ -38,7 +38,7 @@
 							<h4 class="modal-title">Actualizar Information</h4>
 						</div>
 						<div class="modal-body">
-							<form action="{{url_for('roles_aplicacion.update')}}" method="POST">
+							<form action="{{url_for('roles_aplicacion.update_rol')}}" method="POST" name="editar">
 								<div class="form-group">
 									<label>Nombres:</label>
 									<input type="hidden"  name="id" value="{{rol_aplicacion.id}}">
@@ -76,7 +76,7 @@
 		</tbody>
 	</table>
 	<div class="col-auto">
-		<button type="submit" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalcreate">Crear Rol</button>
+		<button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalcreate">Crear Rol</button>
 	</div>
 	<div id="modalcreate" class="modal fade" role="dialog">
 		<div class="modal-dialog">
@@ -85,13 +85,13 @@
 					<h4 class="modal-title">Crear Rol</h4>
 				</div>
 				<div class="modal-body">
-					<form action="{{url_for('roles_aplicacion.crear_rol')}}" method="POST">
+					<form action="{{url_for('roles_aplicacion.crear_rol')}}" method="POST" name="nuevo">
 						<div class="form-floating mb-3">
 							<input type="text" class="form-control" id="floatingNombre" name="nombre_nuevo" placeholder="Nombre de Rol">
 							<label for="floatingNombre">Nombre</label>
 						</div>
 						<div class="form-floating mb-3">
-							<input type="text" class="form-control" id="floatingDescripcion" name="descripcion" placeholder="Descripción">
+							<input type="text" class="form-control" id="floatingDescripcion" name="descripcion_nuevo" placeholder="Descripción">
 							<label for="floatingDescripcion">Descripción</label>
 						</div>
 						<div class="form-group">
