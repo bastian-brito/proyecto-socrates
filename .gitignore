@@ -1,7 +1,6 @@
-
 **.pyc
 *.pyc
 **/__pycache__/**
-sublime-proyecto.sublime-project
-sublime-proyecto.sublime-workspace
-migrations/
+sublime-proyecto.*
+migrations/*
+migrations/**
