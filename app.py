@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
-from Modelo.Modelos import *
 from formulario import IngresaUsuario
 from flask_migrate import Migrate
 from flask_login import LoginManager
@@ -13,9 +12,10 @@ login_manager.init_app(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
-
-#Manejo de Migraciones de Base de Datos
+from Modelo.Modelos import *
 migrate = Migrate(app, db)
+#Manejo de Migraciones de Base de Datos
+
 
 #Aqui se importa la referencia Blue print de Usuarios
 from Controladores.Usuarios_Controler import usuarios_bp
@@ -48,8 +48,11 @@ def registrar_usuario():
                     password =  form.contraseña.data,
                     telefono =  form.telefono.data,
                     estado =  True)
-        db.session.add(usuario)
-        db.session.commit()
+
+        usuario.set_password(password)
+        usuario.save()
+        # Dejamos al usuario logueado
+        login_user(usuario, remember=True)        
         flash('Registro completo')
         return redirect("/")
     return render_template('nuevo_usuario_wtform.html', form=form)

@@ -1,5 +1,5 @@
 
-from Modelo.Modelos import Usuario, Rol_Aplicacion
+from __main__ import Usuario, Rol_Aplicacion
 #Aqui se importa la creación de referencia BluePrint de Usuario
 from . import usuarios_bp
 from flask import render_template, request, redirect, url_for, flash
@@ -49,7 +49,7 @@ def crear_usuario():
     apellido_paterno = request.form.get("apellido_paterno")
     apellido_materno = request.form.get("apellido_materno")
     correo           = request.form.get("correo")
-    contraseña       = request.form.get("contraseña")
+    password       = request.form.get("contraseña")
     telefono         = request.form.get("telefono")
     estado           = True
     usuario          = Usuario(name=nombres,
@@ -57,11 +57,13 @@ def crear_usuario():
                             fk_rol = fk_rol, 
                             apellido_materno=apellido_materno,
                             email=correo,
-                            password=contraseña,
+                            password=password,
                             telefono=telefono,
                             estado=estado)
-    db.session.add(usuario)
-    db.session.commit()
+    usuario.set_password(password)
+    usuario.save()
+    # Dejamos al usuario logueado
+    login_user(usuario, remember=True) 
     return redirect("/")
 
 # @usuarios_bp.route("/login_usuario", methods = ['GET'])
@@ -75,15 +77,28 @@ def crear_usuario():
 
 @usuarios_bp.route('/login', methods=['GET', 'POST'])
 def login():
+
     if current_user.is_authenticated:
         return render_template("Index.html")
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = Usuario.get_by_email(form.email.data)
-        if user is not None and user.check_password(form.password.data):
-            login_user(user, remember=form.remember_me.data)
-            return render_template("Index.html")
-    return render_template('usuarios/login_usuario.html', form=form)
+    #form = LoginForm()
+    correo   = request.form.get("Email")
+    password = request.form.get("Password")
+    user = Usuario.get_by_email(correo)
+    if user is not None and user.check_password(password):
+        login_user(user)
+        return render_template("Index.html")
+    # if form.validate_on_submit():
+    #     user = Usuario.get_by_email(form.email.data)
+    #     if user is not None and user.check_password(form.password.data):
+    #         # login_user(user, remember=form.remember_me.data)
+    #         login_user(user)
+    #         return render_template("Index.html")
+    return render_template('usuarios/login_usuario.html')
+
+@usuarios_bp.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
 
 @login_manager.user_loader
 def load_user(user_id):

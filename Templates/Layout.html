@@ -9,13 +9,28 @@
 		<header class="main-head">
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid pl-4">
-					<a href="/" class="navbar-brand fs-3">Prototipo Plataforma</a>						
+					<a href="/" class="navbar-brand fs-3">Prototipo Plataforma{{current_user.name}}</a>
+					<!-- {% if session.logged_in %} -->
+					<h3>Hola {{current_user.name}}</h3>
+					<!-- {% endif %} -->
+						
 				</div>		
 			</nav>
 		</header>
 		<div class="container">
 			<div class="row">
 				<div class="col-3 h-100 d-inline-block">
+
+					<div class="row">
+						<div class="col">
+							<a href="login" class="btn btn-secondary my-2">Login</a>
+						</div>
+						<div class="col">
+							<a href="logout" class="btn btn-secondary my-2">Logout</a>
+						</div>
+					</div>
+
+
 					<div class="accordion" id="accordionExample">
 						<div class="accordion-item">
 							<h2 class="accordion-header" id="headingOne">

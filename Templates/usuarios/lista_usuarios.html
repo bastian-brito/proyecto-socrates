@@ -26,12 +26,12 @@
 			{% for usuario in usuarios %}
 			<tr>				
 				<th scope="row">{{usuario.id}}</th>
-				<td>{{usuario.nombres}}</td>
+				<td>{{usuario.name}}</td>
 				<td>{{usuario.apellido_paterno}}</td>
 				<td>{{usuario.apellido_materno}}</td>
 				<td>{{usuario.roles_aplicacion.nombres}}</td>
-				<td>{{usuario.correo}}</td>
-				<td>{{usuario.contraseña}}</td>	
+				<td>{{usuario.email}}</td>
+				<td>{{usuario.password}}</td>	
 				<td>{{usuario.telefono}}</td>				
 				<td>{{usuario.estado}}</td>
 				<td>
