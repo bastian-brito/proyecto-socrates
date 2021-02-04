@@ -10,12 +10,23 @@
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<div class="container-fluid pl-4">
 					<a href="/" class="navbar-brand fs-3">Prototipo Plataforma</a>						
-				</div>		
+				</div>	
+				{% if session.logged_in %}
+				<h3>Hola {{session.name}}</h3>
+				{% endif %}	
 			</nav>
 		</header>
 		<div class="container">
 			<div class="row">
 				<div class="col-3 h-100 d-inline-block">
+					<div class="row">
+						<div class="col">
+							<button href="login" type="button" class="btn btn-secondary my-2">Login</button>
+						</div>
+						<div class="col">
+							<button href="logout" type="button" class="btn btn-secondary my-2">Logout</button>
+						</div>
+					</div>
 					<div class="accordion" id="accordionExample">
 						<div class="accordion-item">
 							<h2 class="accordion-header" id="headingOne">
