@@ -9,18 +9,7 @@ from datetime import datetime
 #from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from __main__ import db
-
-#db = SQLAlchemy()
-
-class Rol_Aplicacion(db.Model):
-    __tablename__  = "roles_aplicacion"
-    id             = db.Column(db.Integer, primary_key=True)
-    nombres        = db.Column(db.String(30), nullable=False)
-    descripcion    = db.Column(db.String(60), nullable=False)
-    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
-    estado         = db.Column(db.Boolean, nullable=False)
-    usuarios       = db.relationship('Usuario', backref='roles_aplicacion', lazy=True)
+from app import db
 
 class Red_Social(db.Model):
     __tablename__ = "redes_sociales"
@@ -32,11 +21,10 @@ class Red_Social(db.Model):
     estado         = db.Column(db.Boolean, nullable=False)
     usuarios       = db.relationship('Usuario_Red_Social', backref='redes_sociales', lazy=True)
 
-class Usuario(db.Model, UserMixin):
-    __tablename__ = "usuarios"
+class User(db.Model, UserMixin):
+    __tablename__ = "users"
     id               = db.Column(db.Integer, primary_key=True)
-    name             = db.Column(db.String(80), nullable=False)
-    fk_rol           = db.Column(db.Integer, db.ForeignKey('roles_aplicacion.id'), nullable=False)
+    name             = db.Column(db.String(80), nullable=False)    
     apellido_paterno = db.Column(db.String(30), nullable=False)
     apellido_materno = db.Column(db.String(30), nullable=False)
     email            = db.Column(db.String(256), unique=True, nullable=False)
@@ -44,7 +32,9 @@ class Usuario(db.Model, UserMixin):
     telefono         = db.Column(db.Integer, nullable=False)
     fecha_creacion   = db.Column(db.DateTime, default=datetime.now)
     estado           = db.Column(db.Boolean, nullable=False)
-    red_socials      = db.relationship('Usuario_Red_Social', backref='usuarios', lazy=True)
+    red_socials      = db.relationship('Usuario_Red_Social', backref='users', lazy=True)
+    roles            = db.relationship('Role', secondary='user_roles')
+
     def __repr__(self):
         return f'<Usuario {self.email}>'
     def set_password(self, password):
@@ -57,14 +47,31 @@ class Usuario(db.Model, UserMixin):
         db.session.commit()
     @staticmethod
     def get_by_id(id):
-        return Usuario.query.get(id)
+        return User.query.get(id)
     @staticmethod
     def get_by_email(email):
-        return Usuario.query.filter_by(email=email).first()
+        return User.query.filter_by(email=email).first()
+
+class Role(db.Model):
+    __tablename__  = "roles"
+    id             = db.Column(db.Integer, primary_key=True)
+    name           = db.Column(db.String(30), nullable=False)
+    descripcion    = db.Column(db.String(60), nullable=False)
+    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+    estado         = db.Column(db.Boolean, nullable=False)
+    users          = db.relationship('User', secondary='user_roles')
+
+class UserRoles(db.Model):
+        __tablename__ = 'user_roles'
+        id             = db.Column(db.Integer(), primary_key=True)
+        user_id        = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
+        role_id        = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
+        fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+        estado         = db.Column(db.Boolean, nullable=False)
 
 class Usuario_Red_Social(db.Model):
     __tablename__  = "usuarios_redes_sociales"
-    fk_usuario     = db.Column(db.Integer, db.ForeignKey('usuarios.id'), primary_key=True)
+    fk_usuario     = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     fk_red_social  = db.Column(db.Integer, db.ForeignKey('redes_sociales.id'), primary_key=True)      
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
     estado         = db.Column(db.Boolean, nullable=False)

@@ -48,7 +48,7 @@ def registrar_usuario():
                     password =  form.contraseña.data,
                     telefono =  form.telefono.data,
                     estado =  True)
-
+        usuario.roles.append(Role(name='Admin', descripcion='Es Admin' , estado=True))
         usuario.set_password(password)
         usuario.save()
         # Dejamos al usuario logueado
