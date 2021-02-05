@@ -4,3 +4,5 @@
 sublime-proyecto.*
 migrations/*
 migrations/**
+sublime-proyecto.sublime-workspace
+*.sublime-workspace

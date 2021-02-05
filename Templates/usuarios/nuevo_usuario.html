@@ -6,17 +6,17 @@
 	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
 </div>
 <form class="row g-3">
-  <div class="col-auto">
-    <label for="staticEmail2" class="visually-hidden">Email</label>
-    <input type="text"  class="form-control-plaintext" id="staticEmail2" value="email@example.com">
-  </div>
-  <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Password</label>
-    <input type="password" class="form-control" id="inputPassword2" placeholder="Password">
-  </div>
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
-  </div>
+	<div class="col-auto">
+		<label for="staticEmail2" class="visually-hidden">Email</label>
+		<input type="text"  class="form-control-plaintext" id="staticEmail2" value="email@example.com">
+	</div>
+	<div class="col-auto">
+		<label for="inputPassword2" class="visually-hidden">Password</label>
+		<input type="password" class="form-control" id="inputPassword2" placeholder="Password">
+	</div>
+	<div class="col-auto">
+		<button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+	</div>
 </form>
 <form action="{{ url_for('usuarios.crear_usuario') }}" method="post">
 	<div class="form-floating mb-3">
@@ -35,16 +35,15 @@
 		<input type="email" class="form-control" id="floatingEmail" name="correo" placeholder="name@example.com">
 		<label for="floatingEmail">Email</label>
 	</div>
-	<div class="form-floating mb-3">
+	<div class="form mb-3">
+		<label for="floatingRol">Rol Aplicación</label>
 		<select class="form-select" id="floatingRol" name="rol_aplicacion" aria-label="Selecciona un rol, ejemplo">
-			<option selected>Selecciona uno</option>
+			<!-- <option selected>Selecciona uno</option> -->
 			{% for rol_aplicacion in roles_aplicacion %}
-			<option value={{rol_aplicacion.id}}>{{rol_aplicacion.nombres}}</option>
+			<option value={{rol_aplicacion.id}} selected>{{rol_aplicacion.nombres}}</option>
 			{%endfor%}
 		</select>
-		<label for="floatingRol">Rol Aplicación</label>
 	</div>
-	<label for="floatingRol">Rol Aplicación</label>
 </div>
 <div class="form-floating mb-3">
 	<input type="password" class="form-control" id="floatingPassword" name="contraseña" placeholder="8 a 20 carácteres">
