@@ -6,3 +6,4 @@ migrations/*
 migrations/**
 sublime-proyecto.sublime-workspace
 *.sublime-workspace
+*.sublime-workspace
