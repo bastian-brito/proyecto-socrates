@@ -7,9 +7,31 @@ Created on Tue Jan 26 17:49:37 2021
 
 from datetime import datetime
 #from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin
+from flask_login import UserMixin, AnonymousUserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
-from app import db
+from __main__ import db
+
+class AnonymousUserMixin(AnonymousUserMixin):
+
+    @property
+    def is_anonymous(self):
+        return True
+
+    @property
+    def is_authenticated(self):
+        return False
+
+    @property
+    def is_active(self):
+        return False
+
+    @staticmethod
+    def get_id():
+        return None
+
+    @staticmethod
+    def has_role(_):
+        return False
 
 class Red_Social(db.Model):
     __tablename__ = "redes_sociales"
@@ -28,6 +50,7 @@ class User(db.Model, UserMixin):
     apellido_paterno = db.Column(db.String(30), nullable=False)
     apellido_materno = db.Column(db.String(30), nullable=False)
     email            = db.Column(db.String(256), unique=True, nullable=False)
+    #email_confirmed_at = db.Column(db.DateTime())
     password         = db.Column(db.String(128), nullable=False)
     telefono         = db.Column(db.Integer, nullable=False)
     fecha_creacion   = db.Column(db.DateTime, default=datetime.now)
@@ -45,6 +68,14 @@ class User(db.Model, UserMixin):
         if not self.id:
             db.session.add(self)
         db.session.commit()
+    #Se consulta por     
+    def has_role(self, rol):
+        return any(rol == role.name for role in self.roles)
+
+    #def has_role2(self, role):
+    #    return role in self.roles
+
+    
     @staticmethod
     def get_by_id(id):
         return User.query.get(id)

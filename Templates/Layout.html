@@ -57,9 +57,19 @@
 							</h2>
 							<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
 								<div class="accordion-body d-grid">
-									<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
-									<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>
-									<a href="lista_usuarios" class="btn btn-secondary my-2">Lista Usuarios</a>
+									{% if current_user.is_anonymous %}
+									No LOgeado
+									{% else %}
+										{% if current_user.has_role('Admin') %}
+										
+										<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
+										{% endif %}
+										<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>						
+										{% if current_user.has_role('Mauro') %}
+										<a href="lista_usuarios" class="btn btn-secondary my-2">Lista Usuarios</a>
+										{% endif %}
+									{% endif %}
+									
 								</div>
 							</div>
 						</div>

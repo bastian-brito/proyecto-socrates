@@ -29,7 +29,7 @@
 				<td>{{usuario.name}}</td>
 				<td>{{usuario.apellido_paterno}}</td>
 				<td>{{usuario.apellido_materno}}</td>
-				<td>{{usuario.roles_aplicacion.nombres}}</td>
+				<td>{{usuario.roles.name}}</td>
 				<td>{{usuario.email}}</td>
 				<td>{{usuario.password}}</td>	
 				<td>{{usuario.telefono}}</td>				
@@ -71,9 +71,9 @@
 								<div class="form-group">
 									<label for="floatingRol">Rol Aplicación:</label>
 									<select class="form-select" id="floatingRol" name="rol_aplicacion" aria-label="Selecciona un rol, ejemplo">
-										<option value={{usuario.roles_aplicacion}} selected>{{usuario.roles_aplicacion.nombres}}</option>
-										{% for rol_aplicacion in roles_aplicacion %}
-										<option value={{rol_aplicacion.id}}>{{rol_aplicacion.nombres}}</option>
+										<option value={{usuario.roles}} selected>{{usuario.roles.name}}</option>
+										{% for rol in roles %}
+										<option value={{rol.id}}>{{rol.name}}</option>
 										{%endfor%}
 									</select>
 								</div>
