@@ -61,7 +61,7 @@ def update():
 
 
 @usuarios_bp.route("/lista_usuarios", methods = ['GET'])
-@roles_required(['Mauro'])
+@roles_required(['Admin'])
 def lista_usuarios():
     usuarios = User.query.order_by(User.fecha_creacion.asc()).all() 
     return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)

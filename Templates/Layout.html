@@ -65,7 +65,7 @@
 										<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
 										{% endif %}
 										<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>						
-										{% if current_user.has_role('Mauro') %}
+										{% if current_user.has_role('Admin') %}
 										<a href="lista_usuarios" class="btn btn-secondary my-2">Lista Usuarios</a>
 										{% endif %}
 									{% endif %}
