@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-21T15:35:35.446Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.400" etag="ovlG_jGUqtRgHIkJfihd" version="14.4.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-21T15:37:34.416Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.400" etag="DkU4R5njo4eytnIgbhCn" version="14.4.2" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
     <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -97,11 +97,13 @@
         <mxCell id="0LGRW5zqmpPXBqWegIWY-11" value="+ ID&#xa;+ Nombre&#xa;+ Link&#xa;+ FK_tipo&#xa;+ Status bool&#xa;+ Fecha_Creacion" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="0LGRW5zqmpPXBqWegIWY-10" vertex="1">
           <mxGeometry y="30" width="160" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="0LGRW5zqmpPXBqWegIWY-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="0LGRW5zqmpPXBqWegIWY-15" target="vy6UNjbujzI163U6weUs-49" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="0LGRW5zqmpPXBqWegIWY-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" target="vy6UNjbujzI163U6weUs-49" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-260" y="955" as="sourcePoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="0LGRW5zqmpPXBqWegIWY-15" value="Categoria" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-          <mxGeometry x="-420" y="890" width="160" height="120" as="geometry" />
+          <mxGeometry x="-420" y="880" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="0LGRW5zqmpPXBqWegIWY-16" value="+ID&#xa;+ Nombre&#xa;+ Descripcion&#xa;+ Status bool&#xa;+ Fecha_Creacion" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="0LGRW5zqmpPXBqWegIWY-15" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
