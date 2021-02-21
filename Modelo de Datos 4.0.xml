@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-02-21T15:34:36.241Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.400" etag="b-GaKHcpueNKh_oDvsE6" version="14.4.2" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-21T15:35:35.446Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.400" etag="ovlG_jGUqtRgHIkJfihd" version="14.4.2" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
     <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -121,16 +121,14 @@
         <mxCell id="xelp4dsbVHKJGnVp_Eev-2" value="+ ID&#xa;+ FK_User&#xa;+ Fecha&#xa;+ Nombre_Tabla&#xa;+ Operacion&#xa;+ Campo_Modificado&#xa;+ ID_Registro&#xa;+ Valor_Anterior&#xa;+ Valor_Actual&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="xelp4dsbVHKJGnVp_Eev-1" vertex="1">
           <mxGeometry y="30" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="xelp4dsbVHKJGnVp_Eev-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;" parent="1" source="nYIQgTiBqxoL8qn_KWrK-32" edge="1">
+        <mxCell id="xelp4dsbVHKJGnVp_Eev-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.294;exitY=0.994;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="nYIQgTiBqxoL8qn_KWrK-32" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="-210" y="315" />
-              <mxPoint x="-190" y="315" />
-              <mxPoint x="-190" y="393" />
-              <mxPoint x="-350" y="393" />
-              <mxPoint x="-350" y="510" />
+              <mxPoint x="-163" y="393" />
+              <mxPoint x="-290" y="393" />
+              <mxPoint x="-290" y="510" />
             </Array>
-            <mxPoint x="-360" y="510" as="targetPoint" />
+            <mxPoint x="-290" y="510" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="Kn-QzxElvlDqkpLnCk7z-2" value="UserRoles" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
@@ -243,6 +241,15 @@
         </mxCell>
         <mxCell id="yWdKyq-woqG9-aWOtmhJ-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="yWdKyq-woqG9-aWOtmhJ-2" target="yWdKyq-woqG9-aWOtmhJ-5">
           <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="yWdKyq-woqG9-aWOtmhJ-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="nYIQgTiBqxoL8qn_KWrK-32" target="Kn-QzxElvlDqkpLnCk7z-27">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="-190" y="370" />
+              <mxPoint x="-410" y="370" />
+              <mxPoint x="-410" y="475" />
+            </Array>
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
