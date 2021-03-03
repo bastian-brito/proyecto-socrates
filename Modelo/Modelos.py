@@ -6,32 +6,10 @@ Created on Tue Jan 26 17:49:37 2021
 """
 
 from datetime import datetime
-#from flask_sqlalchemy import SQLAlchemy
-from flask_login import UserMixin, AnonymousUserMixin
+from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 from __main__ import db
 
-class AnonymousUserMixin(AnonymousUserMixin):
-
-    @property
-    def is_anonymous(self):
-        return True
-
-    @property
-    def is_authenticated(self):
-        return False
-
-    @property
-    def is_active(self):
-        return False
-
-    @staticmethod
-    def get_id():
-        return None
-
-    @staticmethod
-    def has_role(_):
-        return False
 
 class Red_Social(db.Model):
     __tablename__ = "redes_sociales"
@@ -49,15 +27,13 @@ class User(db.Model, UserMixin):
     name             = db.Column(db.String(80), nullable=False)    
     apellido_paterno = db.Column(db.String(30), nullable=False)
     apellido_materno = db.Column(db.String(30), nullable=False)
-    email            = db.Column(db.String(256), unique=True, nullable=False)
-    #email_confirmed_at = db.Column(db.DateTime())
+    email            = db.Column(db.String(256), unique=True, nullable=False)    
     password         = db.Column(db.String(128), nullable=False)
     telefono         = db.Column(db.Integer, nullable=False)
     fecha_creacion   = db.Column(db.DateTime, default=datetime.now)
     estado           = db.Column(db.Boolean, nullable=False)
     red_socials      = db.relationship('Usuario_Red_Social', backref='users', lazy=True)
-    roles            = db.relationship('Role', secondary='user_roles')
-
+    
     def __repr__(self):
         return f'<Usuario {self.email}>'
     def set_password(self, password):
@@ -68,13 +44,11 @@ class User(db.Model, UserMixin):
         if not self.id:
             db.session.add(self)
         db.session.commit()
-    #Se consulta por     
+    """ """
+    #Se consulta por si Usuario tiene algun rol
+    """ """    
     def has_role(self, rol):
         return any(rol == role.name for role in self.roles)
-
-    #def has_role2(self, role):
-    #    return role in self.roles
-
     
     @staticmethod
     def get_by_id(id):
@@ -93,16 +67,57 @@ class Role(db.Model):
     users          = db.relationship('User', secondary='user_roles')
 
 class UserRoles(db.Model):
-        __tablename__ = 'user_roles'
-        id             = db.Column(db.Integer(), primary_key=True)
-        user_id        = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
-        role_id        = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
-        fecha_creacion = db.Column(db.DateTime, default=datetime.now)
-        estado         = db.Column(db.Boolean, nullable=False)
+    __tablename__  = 'user_roles'
+    id             = db.Column(db.Integer(), primary_key=True)
+    user_id        = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
+    role_id        = db.Column(db.Integer(), db.ForeignKey('roles.id', ondelete='CASCADE'))
+    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+    estado         = db.Column(db.Boolean, nullable=False)
 
 class Usuario_Red_Social(db.Model):
     __tablename__  = "usuarios_redes_sociales"
-    fk_usuario     = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    fk_red_social  = db.Column(db.Integer, db.ForeignKey('redes_sociales.id'), primary_key=True)      
+    fk_usuario     = db.Column(db.Integer(), db.ForeignKey('users.id'), primary_key=True)
+    fk_red_social  = db.Column(db.Integer(), db.ForeignKey('redes_sociales.id'), primary_key=True)      
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
     estado         = db.Column(db.Boolean, nullable=False)
+
+class Escuela(db.Model):
+    __tablename__   = 'escuelas'
+    id              = db.Column(db.Integer(), primary_key=True)
+    name            = db.Column(db.String(30), nullable=False)
+    user_id         = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
+    fecha_creacion  = db.Column(db.DateTime, default=datetime.now)
+    publicado       = db.Column(db.Boolean, nullable=False)
+    estado          = db.Column(db.Boolean, nullable=False)
+    planes_escuelas = db.relationship('Plan', secondary='planes_escuelas')
+
+class Plan(db.Model):
+    __tablename__   = 'planes'
+    id              = db.Column(db.Integer(), primary_key=True)
+    escuela_id      = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    fecha_creacion  = db.Column(db.DateTime, default=datetime.now)
+    publicado       = db.Column(db.Boolean, nullable=False)
+    name            = db.Column(db.String(30), nullable=False)
+    precio          = db.Column(db.String(30), nullable=False)
+    descripcion     = db.Column(db.String(60), nullable=False)
+    caracteristicas = db.Column(db.String(60), nullable=False)
+    estado          = db.Column(db.Boolean, nullable=False)
+    planes_escuelas = db.relationship('Escuela', secondary='planes_escuelas')
+
+class Plan_Escuela(db.Model):
+    __tablename__  = 'planes_escuelas'
+    id             = db.Column(db.Integer(), primary_key=True)
+    plan_id        = db.Column(db.Integer(), db.ForeignKey('planes.id', ondelete='CASCADE'))
+    escuela_id     = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
+    estado         = db.Column(db.Boolean, nullable=False)
+    usuarios       = db.relationship('pagos_escuelas', backref='planes_escuelas', lazy=True)
+
+class Pago_Escuela(db.Model):
+    __tablename__       = 'pagos_escuelas'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    planes_escuelas_id  = db.Column(db.Integer(), db.ForeignKey('planes_escuelas.id', ondelete='CASCADE'))
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    publicado           = db.Column(db.Boolean, nullable=False)
+    estado              = db.Column(db.Boolean, nullable=False)
+    

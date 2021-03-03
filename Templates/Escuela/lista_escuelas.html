@@ -11,29 +11,23 @@
 		<thead>
 			<tr>
 				<th scope="col">ID</th>
-				<th scope="col">Nombres</th>
-				<th scope="col">A. Paterno</th>
-				<th scope="col">A. Materno</th>
-				<th scope="col">ID Rol</th>
-				<th scope="col">Email</th>
-				<th scope="col">Contraseña</th>
-				<th scope="col">Teléfono</th>
-				<th scope="col">Estado</th>
-				<th scope="col">Acción</th>
+				<th scope="col">Nombres Escuelas</th>
+				<th scope="col">User ID</th>
+				<th scope="col">Fecha Creación</th>
+				<th scope="col">Publicado</th>
+				<th scope="col">Estado</th>	
+				<th scope="col">Acción</th>		
 			</tr>
 		</thead>
 		<tbody>
-			{% for usuario in usuarios %}
+			{% for escuela in escuelas %}
 			<tr>				
-				<th scope="row">{{usuario.id}}</th>
-				<td>{{usuario.name}}</td>
-				<td>{{usuario.apellido_paterno}}</td>
-				<td>{{usuario.apellido_materno}}</td>
-				<td>{{usuario.roles.name}}</td>
-				<td>{{usuario.email}}</td>
-				<td>{{usuario.password}}</td>	
-				<td>{{usuario.telefono}}</td>				
-				<td>{{usuario.estado}}</td>
+				<th scope="row">{{escuela.id}}</th>
+				<td>{{escuela.name}}</td>
+				<td>{{usuario.user_id}}</td>
+				<td>{{escuela.fecha_creacion}}</td>
+				<td>{{escuela.publicado}}</td>												
+				<td>{{escuela.estado}}</td>
 				<td>
 					<a href="/update/{{usuario.id}}" class="btn btn-warning btn-xs" data-bs-toggle="modal" data-bs-target="#modaledit{{usuario.id}}">Editar</a> 
 				</td>

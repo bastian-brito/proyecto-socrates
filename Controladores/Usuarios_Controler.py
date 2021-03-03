@@ -5,7 +5,8 @@ from . import usuarios_bp
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from functools import wraps
-from .form_usuario import SignupForm, LoginForm
+#formulario
+#from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
 from app import login_manager
 from __main__ import db
@@ -95,33 +96,17 @@ def crear_usuario():
     login_user(usuario, remember=True) 
     return redirect("/")
 
-# @usuarios_bp.route("/login_usuario", methods = ['GET'])
-# def login_usuario():
-#     return render_template("usuarios/login_usuario.html")
-
-# @usuarios_bp.route("/logeo_usuario", methods = ['POST'])
-# def login_usuario():
-
-#     return render_template("Index.html")
-
 @usuarios_bp.route('/login', methods=['GET', 'POST'])
 def login():
 
     if current_user.is_authenticated:
-        return render_template("Index.html")
-    #form = LoginForm()
+        return render_template("Index.html")    
     correo   = request.form.get("Email")
     password = request.form.get("Password")
     user = User.get_by_email(correo)
     if user is not None and user.check_password(password):
         login_user(user)
-        return render_template("Index.html")
-    # if form.validate_on_submit():
-    #     user = Usuario.get_by_email(form.email.data)
-    #     if user is not None and user.check_password(form.password.data):
-    #         # login_user(user, remember=form.remember_me.data)
-    #         login_user(user)
-    #         return render_template("Index.html")
+        return render_template("Index.html")    
     return render_template('usuarios/login_usuario.html')
 
 @usuarios_bp.route('/logout')
