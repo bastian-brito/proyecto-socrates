@@ -4,7 +4,7 @@ from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user
 from functools import wraps
 from app import login_manager
-from __main__ import db
+#from __main__ import db
 
 def roles_required(roles: list, require_all=False):
     def _roles_required(f):
@@ -63,9 +63,10 @@ def escuela_update():
         escuela.estado = 1
     if request.form.get('estado') != 'True':
         escuela.estado = 0
-    db.session.merge(escuela)
-    db.session.flush()
-    db.session.commit()
+    escuela.save()
+    #db.session.merge(escuela)
+    #db.session.flush()
+    #db.session.commit()
     flash("Escuela actualizada")
 
     return redirect(url_for('escuelas.lista_escuelas'))

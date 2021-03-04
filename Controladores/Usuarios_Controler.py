@@ -9,7 +9,8 @@ from functools import wraps
 #from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
 from app import login_manager
-from __main__ import db
+from app import db
+#from __main__ import db
 
 def roles_required(roles: list, require_all=False):
     def _roles_required(f):
@@ -53,9 +54,10 @@ def update():
             usuario.estado = 1
         if request.form.get('estado') != 'True':
             usuario.estado = 0
-        db.session.merge(usuario)
-        db.session.flush()
-        db.session.commit()
+        usuario.save()
+        #db.session.merge(usuario)
+        #db.session.flush()
+        #db.session.commit()
         flash("Usuario actualizado")
  
         return redirect(url_for('usuarios.lista_usuarios'))

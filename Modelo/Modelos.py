@@ -8,6 +8,7 @@ Created on Tue Jan 26 17:49:37 2021
 from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+#from app import db
 from __main__ import db
 
 
@@ -33,6 +34,7 @@ class User(db.Model, UserMixin):
     fecha_creacion   = db.Column(db.DateTime, default=datetime.now)
     estado           = db.Column(db.Boolean, nullable=False)
     red_socials      = db.relationship('Usuario_Red_Social', backref='users', lazy=True)
+    roles            = db.relationship('Role', secondary='user_roles')
     
     def __repr__(self):
         return f'<Usuario {self.email}>'
@@ -44,6 +46,7 @@ class User(db.Model, UserMixin):
         if not self.id:
             db.session.add(self)
         db.session.commit()
+        
     """ """
     #Se consulta por si Usuario tiene algun rol
     """ """    
@@ -111,7 +114,7 @@ class Plan_Escuela(db.Model):
     escuela_id     = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
     fecha_creacion = db.Column(db.DateTime, default=datetime.now)
     estado         = db.Column(db.Boolean, nullable=False)
-    usuarios       = db.relationship('pagos_escuelas', backref='planes_escuelas', lazy=True)
+    pago_escuela   = db.relationship('Pago_Escuela', backref='planes_escuelas', lazy=True)
 
 class Pago_Escuela(db.Model):
     __tablename__       = 'pagos_escuelas'

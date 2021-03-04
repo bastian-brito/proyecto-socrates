@@ -26,8 +26,8 @@ app.register_blueprint(usuarios_bp)
 from Controladores.Roles_Aplicacion_Controller import roles_aplicacion_bp
 app.register_blueprint(roles_aplicacion_bp)
 
-website_url = 'vibhu.gfg:5000'
-app.config['SERVER_NAME'] = website_url
+#website_url = 'vibhu.gfg:5000'
+#app.config['SERVER_NAME'] = website_url
 
 @app.route("/")
 def inicio():    
