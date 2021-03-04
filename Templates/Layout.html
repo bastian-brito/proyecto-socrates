@@ -13,7 +13,7 @@
 					<!-- {% if session.logged_in %} -->
 					<h3>Hola {{current_user.name}}</h3>
 					<!-- {% endif %} -->
-						
+
 				</div>		
 			</nav>
 		</header>
@@ -60,14 +60,14 @@
 									{% if current_user.is_anonymous %}
 									No LOgeado
 									{% else %}
-										{% if current_user.has_role('Admin') %}
-										
-										<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
-										{% endif %}
-										<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>						
-										{% if current_user.has_role('Admin') %}
-										<a href="lista_usuarios" class="btn btn-secondary my-2">Lista Usuarios</a>
-										{% endif %}
+									{% if current_user.has_role('Admin') %}
+
+									<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
+									{% endif %}
+									<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>						
+									{% if current_user.has_role('Admin') %}
+									<a href="lista_usuarios" class="btn btn-secondary my-2">Lista Usuarios</a>
+									{% endif %}
 									{% endif %}
 									
 								</div>
@@ -81,7 +81,12 @@
 							</h2>
 							<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
 								<div class="accordion-body d-grid">
-									<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+									{% if current_user.has_role('Admin') %}
+									<a href="lista_escuelas" class="btn btn-secondary my-2">Lista Escuelas</a>
+									<a href="nueva_escuela" class="btn btn-secondary my-2">Nueva Escuela</a>
+									{% else %}
+									Sección solo admin
+									{% endif %}
 								</div>
 							</div>
 						</div>
