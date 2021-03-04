@@ -27,19 +27,19 @@ def roles_required(roles: list, require_all=False):
         return decorated_view
     return _roles_required
 
-@escuelas_bp.route("/lista_escuelas", methods = ['GET'])
 #@roles_required(['Admin'])
+@escuelas_bp.route("/lista_escuelas", methods = ['GET','POST'])
 def lista_escuelas():
     escuelas = Escuela.query.order_by(Escuela.fecha_creacion.asc()).all()
-    return render_template("Escuela/lista_escuelas.html", escuelas=escuelas)
+    return render_template("escuelas/lista_escuelas.html", escuelas=escuelas)
 
-@escuelas_bp.route("/nuevo_escuela", methods = ['GET'])
+@escuelas_bp.route("/nueva_escuela", methods = ['GET'])
 def nueva_escuela():
 	#if current_user.is_authenticated:
-	return render_template("Escuela/nueva_escuela.html")
+	return render_template("escuelas/nueva_escuela.html")
 
-@escuelas_bp.route("/nuevo_escuela", methods=["POST"])
 #@roles_required(['Admin'])
+@escuelas_bp.route("/nueva_escuela", methods=["POST"])
 def crear_escuela():
 	if current_user.is_authenticated:
 		name      = request.form.get("name")
@@ -70,6 +70,25 @@ def escuela_update():
     flash("Escuela actualizada")
 
     return redirect(url_for('escuelas.lista_escuelas'))
+
+#@escuelas_bp.route('/escuela_profile',  subdomain = "<escuela>",  methods=['GET', 'POST'])
+#def escuela_profile(escuela):
+#	escuela = Escuela.query.filter_by(name='escuela').first()
+#	return render_template("escuelas/escuela_profile.html", escuela=escuela)
+
+@escuelas_bp.route("/dynamic", subdomain="<escuela>")
+def escuela_profile(escuela):
+    """Dynamic subdomains are also supported
+    Try going to user1.your-domain.tld/dynamic"""
+    return escuela + ".sitio.tld"
+
+
+#@app.route("/dynamic", subdomain="<username>")
+#def username_index(username):
+    """Dynamic subdomains are also supported
+    Try going to user1.your-domain.tld/dynamic"""
+#    return username + ".your-domain.tld"
+
 
 @login_manager.user_loader
 def load_user(user_id):

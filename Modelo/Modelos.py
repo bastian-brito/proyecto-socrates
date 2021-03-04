@@ -94,6 +94,11 @@ class Escuela(db.Model):
     estado          = db.Column(db.Boolean, nullable=False)
     planes_escuelas = db.relationship('Plan', secondary='planes_escuelas')
 
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
 class Plan(db.Model):
     __tablename__   = 'planes'
     id              = db.Column(db.Integer(), primary_key=True)
