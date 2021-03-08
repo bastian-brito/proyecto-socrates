@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container">
+	<h2 class="text-center py-4">INGRESE NUEVA ESCUELA</h2>
+</div>
+
+<form action="{{ url_for('escuelas.crear_escuela') }}" method="post">
+	<div class="form-floating mb-3">
+		<input type="text" class="form-control" id="floatingNombre" name="name" placeholder="Nombre Escuela">
+		<label for="floatingNombre">Nombre de Escuela</label>
+	</div>	
+<div class="col-auto">
+	<button type="submit" class="btn btn-primary mb-3">Crear Escuela</button>
+</div>
+</form>
+
+{% endblock %}

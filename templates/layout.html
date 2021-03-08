@@ -1,0 +1,124 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Proyecto Sócrates</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+
+	</head>
+	<body>
+		<header class="main-head">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container-fluid pl-4">
+					<a href="/" class="navbar-brand fs-3">Prototipo Plataforma{{current_user.name}}</a>
+					{# {% if session.logged_in %} #}
+					<h3>Hola {{current_user.name}}</h3>
+					{# {% endif %} #}
+
+				</div>
+			</nav>
+		</header>
+		<div class="container">
+			<div class="row">
+				<div class="col-3 h-100 d-inline-block">
+
+					<div class="row">
+						<div class="col">
+							<a href="login" class="btn btn-secondary my-2">Login</a>
+						</div>
+						<div class="col">
+							<a href="logout" class="btn btn-secondary my-2">Logout</a>
+						</div>
+					</div>
+
+
+					<div class="accordion" id="accordionExample">
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingOne">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Categorías
+								</button>
+							</h2>
+							<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+								<div class="accordion-body d-grid">
+									<a href="ncrs" class="btn btn-secondary my-2">Redes Sociales</a>
+									<a href="lista_roles" class="btn btn-secondary my-2">Rol App</a>
+									<button type="button" class="btn btn-secondary my-2">Rol Escuela</button>
+									<button type="button" class="btn btn-secondary my-2">Redes Sociales</button>
+									<button type="button" class="btn btn-secondary my-2">Etiquetas</button>
+									<button type="button" class="btn btn-secondary my-2">Tipos de Ofertas</button>
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingTwo">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Usuarios
+								</button>
+							</h2>
+							<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+								<div class="accordion-body d-grid">
+									{# % if current_user.is_anonymous %}
+									No LOgeado
+									{% else %}
+									{% if current_user.has_role('Admin') % #}
+
+									<a href="nuevo_usuario" class="btn btn-secondary my-2">Crear Usuario</a>
+									{# % endif % #}
+									<a href="nuevo_usuario_wtform" class="btn btn-secondary my-2">Crear Usuario con wtform</a>
+									{# % if current_user.has_role('Admin') % #}
+									<a href="lista_usuarios" class="btn btn-secondary my-2">
+									Lista Usuarios</a>
+									{# % endif % #}
+									{# % endif % #}
+
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingThree">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+									Escuela
+								</button>
+							</h2>
+							<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+								<div class="accordion-body d-grid">
+									{# {% if current_user.has_role('Admin') %} #}
+									<a href="lista_escuelas" class="btn btn-secondary my-2">Lista Escuelas</a>
+									<a href="nueva_escuela" class="btn btn-secondary my-2">Nueva Escuela</a>
+									{# {% else %} #}
+									Sección solo admin
+									{# {% endif %} #}
+								</div>
+							</div>
+						</div>
+						<div class="accordion-item">
+							<h2 class="accordion-header" id="headingFour">
+								<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+									Ofertas
+								</button>
+							</h2>
+							<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+								<div class="accordion-body d-grid">
+									<strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-9">
+					{% block body %}
+
+					{% endblock %}
+				</div>
+			</div>
+
+		</div>
+		<div class="container piedepagina my-4 py-4">
+
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+
+	</body>
+	</html>
