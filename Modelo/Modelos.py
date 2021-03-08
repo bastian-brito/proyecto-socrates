@@ -28,7 +28,7 @@ class User(db.Model, UserMixin):
     name             = db.Column(db.String(80), nullable=False)    
     apellido_paterno = db.Column(db.String(30), nullable=False)
     apellido_materno = db.Column(db.String(30), nullable=False)
-    email            = db.Column(db.String(256), unique=True, nullable=False)    
+    email            = db.Column(db.String(256), unique=True, nullable=True)    
     password         = db.Column(db.String(128), nullable=False)
     telefono         = db.Column(db.Integer, nullable=False)
     fecha_creacion   = db.Column(db.DateTime, default=datetime.now)

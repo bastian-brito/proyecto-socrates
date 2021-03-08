@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 from formulario import IngresaUsuario
 from flask_migrate import Migrate
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user
 
 app = Flask(__name__)
 #app.config.from_object(__name__+'.ConfigClass')
@@ -48,22 +48,23 @@ def inicio():
 def registrar_usuario():
     form = IngresaUsuario(request.form)
     if request.method ==  'POST' and form.validate():
-        usuario =   Usuario(
-                    name = form.nombres.data,
-                    #fk_rol  =  1,
+        usuario =   User(
+                    name = form.nombres.data,                    
                     apellido_paterno =  form.apellido_paterno.data,
                     apellido_materno =  form.apellido_materno.data,
                     email =  form.correo.data,
                     password =  form.contraseña.data,
                     telefono =  form.telefono.data,
                     estado =  True)
-        usuario.roles.append(Role(name='Admin', descripcion='Es Admin' , estado=True))
-        usuario.set_password(password)
+        admin_role = Role.query.get(1)
+        user_role = Role.query.get(2)  
+        usuario.roles = [admin_role, user_role, ]
+        usuario.set_password(usuario.password)
         usuario.save()
         # Dejamos al usuario logueado
         login_user(usuario, remember=True)        
         flash('Registro completo')
-        return redirect("/")
+        return redirect("/")      
     return render_template('nuevo_usuario_wtform.html', form=form)
 
 @login_manager.user_loader

@@ -54,6 +54,7 @@ def update():
             usuario.estado = 1
         if request.form.get('estado') != 'True':
             usuario.estado = 0
+        usuario.set_password(usuario.password)
         usuario.save()
         #db.session.merge(usuario)
         #db.session.flush()
@@ -72,12 +73,11 @@ def lista_usuarios():
 @usuarios_bp.route("/nuevo_usuario", methods=["POST"])
 @roles_required(['Admin'])
 def crear_usuario():
-    nombres          = request.form.get("nombres")    
-    #fk_rol           = request.form.get("rol_aplicacion")
+    nombres          = request.form.get("nombres")  
     apellido_paterno = request.form.get("apellido_paterno")
     apellido_materno = request.form.get("apellido_materno")
     correo           = request.form.get("correo")
-    password       = request.form.get("contraseña")
+    password        = request.form.get("contraseña")
     telefono         = request.form.get("telefono")
     estado           = True
     usuario          = User(name=nombres,
