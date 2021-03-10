@@ -25,6 +25,7 @@ class Red_Social(db.Model):
 class User(db.Model, UserMixin):
     __tablename__ = "users"
     id               = db.Column(db.Integer, primary_key=True)
+    #Agregar nombre de usuario, aparte de nombre propio
     name             = db.Column(db.String(80), nullable=False)    
     apellido_paterno = db.Column(db.String(30), nullable=False)
     apellido_materno = db.Column(db.String(30), nullable=False)

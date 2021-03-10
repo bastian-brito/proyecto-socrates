@@ -5,6 +5,7 @@ from . import usuarios_bp
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from functools import wraps
+from formulario import IngresaUsuario
 #formulario
 #from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
@@ -55,10 +56,7 @@ def update():
         if request.form.get('estado') != 'True':
             usuario.estado = 0
         usuario.set_password(usuario.password)
-        usuario.save()
-        #db.session.merge(usuario)
-        #db.session.flush()
-        #db.session.commit()
+        usuario.save()        
         flash("Usuario actualizado")
  
         return redirect(url_for('usuarios.lista_usuarios'))
@@ -97,6 +95,29 @@ def crear_usuario():
     # Dejamos al usuario logueado
     login_user(usuario, remember=True) 
     return redirect("/")
+
+@usuarios_bp.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
+def registrar_usuario():
+    form = IngresaUsuario(request.form)    
+    if request.method ==  'POST' and form.validate():
+        usuario =   User(                
+                    name = form.nombres.data,                    
+                    apellido_paterno =  form.apellido_paterno.data,
+                    apellido_materno =  form.apellido_materno.data,
+                    email =  form.correo.data,
+                    password =  form.contraseña.data,
+                    telefono =  form.telefono.data,
+                    estado =  True)
+        admin_role = Role.query.get(1)
+        user_role = Role.query.get(2)  
+        usuario.roles = [admin_role, user_role, ]
+        usuario.set_password(usuario.password)
+        usuario.save()
+        # Dejamos al usuario logueado
+        login_user(usuario, remember=True)        
+        flash('Registro completo')
+        return redirect("/")      
+    return render_template('nuevo_usuario_wtform.html', form=form)
 
 @usuarios_bp.route('/login', methods=['GET', 'POST'])
 def login():

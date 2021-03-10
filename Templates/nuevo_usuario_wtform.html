@@ -4,10 +4,13 @@
 
 <div class="container">
 	<h2 class="text-center py-4">INGRESE NUEVO USUARIO</h2>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-migrate-3.1.0.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </div>
 
 {% from "_formhelpers.html" import render_field %}
-<form action="{{ url_for('registrar_usuario') }}" method="POST">
+<form action="{{ url_for('usuarios.registrar_usuario') }}" method="POST">
   <dl>
     {{ render_field(form.nombres) }}
     {{ render_field(form.apellido_paterno) }}
@@ -20,7 +23,35 @@
  <button type="submit" class="btn btn-primary mb-3">Crear Usuario</button>
 </form>
 
-
+<!-- below jquery code triggered on onblur event and checks the username availability in the database -->
+	<!-- <script type="text/javascript">
+		$(document).ready(function() {
+			$("#correo").on('input', function(e) {
+				$('#msg').hide();
+				
+				if ($('#correo').val() == null || $('#correo').val() == "") {
+					$('#msg').show();
+					$("#msg").html("Correo es Requerido.").css("color", "red");
+				} else {
+					$.ajax({
+						type: "POST",
+						url: "http://localhost:5000/user_check",
+						data: $('#signupform').serialize(),
+						dataType: "html",
+						cache: false,
+						success: function(msg) {
+							$('#msg').show();
+							$("#msg").html(msg);
+						},
+						error: function(jqXHR, textStatus, errorThrown) {
+							$('#msg').show();
+							$("#msg").html(textStatus + " " + errorThrown);
+						}
+					});
+				}
+			});
+		});
+	</script> -->
 
 {#<!-- <form action="{{ url_for('crear_usuario') }}" method="post">
 	<div class="form-floating mb-3">
