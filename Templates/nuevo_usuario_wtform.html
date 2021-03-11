@@ -11,8 +11,9 @@
 
 {% from "_formhelpers.html" import render_field %}
 <form action="{{ url_for('usuarios.registrar_usuario') }}" method="POST">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
   <dl>
-    {{ render_field(form.nombres) }}
+  	{{ render_field(form.nombres) }}
     {{ render_field(form.apellido_paterno) }}
     {{ render_field(form.apellido_materno) }}
     {{ render_field(form.correo) }}

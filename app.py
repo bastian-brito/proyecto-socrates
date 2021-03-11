@@ -3,10 +3,14 @@ from flask_sqlalchemy import SQLAlchemy
 #from formulario import IngresaUsuario
 from flask_migrate import Migrate
 from flask_login import LoginManager, login_user
+#from flask_wtf import CsrfProtect
+from flask_wtf.csrf import CSRFProtect
 
 app = Flask(__name__)
 #app.config.from_object(__name__+'.ConfigClass')
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
+#Protección de ataque csrf
+csrf = CSRFProtect(app)
 app.config['SERVER_NAME']='sitio.tld:5000'
 #app.url_map.default_subdomain = "www"
 
@@ -38,11 +42,6 @@ app.register_blueprint(escuelas_bp)
 @app.route("/")
 def inicio():    
     return render_template("Index.html")
-
-# @app.route("/lista_roles")
-# def lista_roles():
-#     roles_aplicacion = Rol_Aplicacion.query.order_by(Rol_Aplicacion.fecha_creacion.asc()).all() 
-#     return render_template("lista_roles.html", roles_aplicacion=roles_aplicacion)
 
 @login_manager.user_loader
 def load_user(user_id):
