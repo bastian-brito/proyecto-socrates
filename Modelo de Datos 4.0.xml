@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-16T18:59:14.888Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="D05qS3lNqWP47f1rtxyG" version="14.4.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-16T19:12:53.988Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="1It8ElkZnAFl3X9lL7Gm" version="14.4.8" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
     <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -258,27 +258,36 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-1" value="Gratuito" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="1600" width="160" height="120" as="geometry" />
+          <mxGeometry x="-250" y="1440" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-2" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-3" value="Pago Unico" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
-          <mxGeometry x="-80" y="1440" width="160" height="120" as="geometry" />
+          <mxGeometry x="-80" y="1440" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="LF7-UcJcuMF8XTvhyj1W-4" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-3">
-          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        <mxCell id="LF7-UcJcuMF8XTvhyj1W-4" value="+Valor&#xa;+Id Curso&#xa;+Duración&#xa;+Inicio" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-3">
+          <mxGeometry y="30" width="160" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="LF7-UcJcuMF8XTvhyj1W-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="LF7-UcJcuMF8XTvhyj1W-5" target="LF7-UcJcuMF8XTvhyj1W-11">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-5" value="Plan" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
-          <mxGeometry x="120" y="1440" width="160" height="120" as="geometry" />
+          <mxGeometry x="120" y="1440" width="160" height="140" as="geometry" />
         </mxCell>
-        <mxCell id="LF7-UcJcuMF8XTvhyj1W-6" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-5">
-          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        <mxCell id="LF7-UcJcuMF8XTvhyj1W-6" value="+Valor&#xa;+Id Curso&#xa;+Duración&#xa;+ Inicio&#xa;+ Periodo Prueba&#xa;+ Periodo de Cobro&#xa;+ Cantidad de Cobros" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-5">
+          <mxGeometry y="30" width="160" height="110" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-7" value="Suscripción" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
           <mxGeometry x="320" y="1440" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-8" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-7">
+          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="LF7-UcJcuMF8XTvhyj1W-10" value="Registro de Cobros" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="120" y="1270" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="LF7-UcJcuMF8XTvhyj1W-11" value="+&#xa;+Id Plan&#xa;+Fecha del Cobro&#xa;+" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="LF7-UcJcuMF8XTvhyj1W-10">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
       </root>
