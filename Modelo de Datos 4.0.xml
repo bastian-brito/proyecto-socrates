@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-17T21:22:21.820Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="WSiphi-GP-_SEP2hs8eX" version="14.4.8" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-17T21:40:50.871Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="wvejjs1EvVQwFcZpMiik" version="14.4.8" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
     <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -216,7 +216,7 @@
           <mxGeometry y="30" width="160" height="110" as="geometry" />
         </mxCell>
         <mxCell id="aY0Cjgv1RvFe1r8Tu_sF-3" value="Registro de Cobros" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-          <mxGeometry x="360" y="340" width="160" height="120" as="geometry" />
+          <mxGeometry x="360" y="300" width="160" height="120" as="geometry" />
         </mxCell>
         <mxCell id="aY0Cjgv1RvFe1r8Tu_sF-4" value="+Attribute1&#xa;+Attribute2&#xa;+Attribute3&#xa;+ Como se entera de pagos futuros&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="aY0Cjgv1RvFe1r8Tu_sF-3" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
@@ -261,9 +261,22 @@
         <mxCell id="LF7-UcJcuMF8XTvhyj1W-11" value="+&#xa;+Id Plan&#xa;+Fecha del Cobro&#xa;+" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="LF7-UcJcuMF8XTvhyj1W-10" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="KG6XFL_OYhU2_y6H0e4t-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="L5kdA-Ssn5EGo2ny85at-3">
+        <mxCell id="KG6XFL_OYhU2_y6H0e4t-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.006;entryY=0.344;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="L5kdA-Ssn5EGo2ny85at-3" target="aY0Cjgv1RvFe1r8Tu_sF-4">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="350" y="415" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KG6XFL_OYhU2_y6H0e4t-5" value="Goteo Modulo?" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+          <mxGeometry x="350" y="490" width="160" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="KG6XFL_OYhU2_y6H0e4t-6" value="+Modulo 1&#xa;+Attribute2&#xa;+Attribute3" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="KG6XFL_OYhU2_y6H0e4t-5">
+          <mxGeometry y="30" width="160" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="KG6XFL_OYhU2_y6H0e4t-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="L5kdA-Ssn5EGo2ny85at-3" target="KG6XFL_OYhU2_y6H0e4t-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="430" y="440" />
+            </Array>
           </mxGeometry>
         </mxCell>
       </root>
