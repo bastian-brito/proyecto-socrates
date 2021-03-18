@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-18T21:40:45.892Z" agent="5.0 (Windows)" etag="tSTRWAwUg-w1sQZS8uCf" version="14.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-18T21:44:16.496Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="VW8o6Q4lF_jNZk9-juQl" version="14.4.9" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
-    <mxGraphModel dx="1695" dy="461" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -279,20 +279,20 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="7MxQAEDquhRGHO_Ch0mA-1" value="Driping" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+        <mxCell id="7MxQAEDquhRGHO_Ch0mA-1" value="Driping" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="-600" y="1220" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="7MxQAEDquhRGHO_Ch0mA-2" value="+ 0: desactivado&#xa;+ 1: fecha&#xa;+ 2: n días&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="7MxQAEDquhRGHO_Ch0mA-1">
+        <mxCell id="7MxQAEDquhRGHO_Ch0mA-2" value="+ 0: desactivado&#xa;+ 1: fecha&#xa;+ 2: n días&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="7MxQAEDquhRGHO_Ch0mA-1" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="7MxQAEDquhRGHO_Ch0mA-3" value="Módulo" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+        <mxCell id="7MxQAEDquhRGHO_Ch0mA-3" value="Módulo" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="-390" y="1220" width="250" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="7MxQAEDquhRGHO_Ch0mA-4" value="...&#xa;+ Driping: 0 / 1 / 2&#xa;+ Driping_Config: null / fecha / n&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="7MxQAEDquhRGHO_Ch0mA-3">
+        <mxCell id="7MxQAEDquhRGHO_Ch0mA-4" value="...&#xa;+ Dripping: 0 / 1 / 2&#xa;+ Dripping_fecha: ull / fecha / n&#xa;+ Dripping_dias: &#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="7MxQAEDquhRGHO_Ch0mA-3" vertex="1">
           <mxGeometry y="30" width="250" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="7MxQAEDquhRGHO_Ch0mA-5" value="&lt;div&gt;Módulo se ve?&lt;br&gt;&lt;/div&gt;&lt;div&gt;SI:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Drip == 0) o &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Dripp == 1 y (hoy() - modulo.drip_fecha &amp;gt;=0)) o&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Dripp == 2 y (hoy() - matricula.creacion &amp;gt;= modulo.drip_dias))&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" vertex="1" parent="1">
-          <mxGeometry x="-700" y="1410" width="580" height="110" as="geometry" />
+        <mxCell id="7MxQAEDquhRGHO_Ch0mA-5" value="&lt;div&gt;Módulo se ve?&lt;br&gt;&lt;/div&gt;&lt;div&gt;SI:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Drip == 0) o &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Dripp == 1 y (fecha.hoy() -drip_fecha &amp;gt;=0)) o&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(modulo.Dripp == 2 y (fecha.hoy() - fecha.matricula() &amp;gt;= drip_dias))&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" parent="1" vertex="1">
+          <mxGeometry x="-700" y="1410" width="630" height="110" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
