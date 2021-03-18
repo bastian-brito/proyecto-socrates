@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-18T21:57:08.303Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.141 Safari/537.36 OPR/73.0.3856.415" etag="n9MkUcfOB3UqPGe9EAKi" version="14.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-18T22:03:50.022Z" agent="5.0 (Windows)" etag="-Svyg-krdud4lBoxcCqA" version="14.4.9" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
-    <mxGraphModel dx="1592" dy="492" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1695" dy="461" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -48,10 +48,10 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="nYIQgTiBqxoL8qn_KWrK-37" value="Modulo" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-          <mxGeometry x="-40" y="710" width="160" height="200" as="geometry" />
+          <mxGeometry x="-40" y="710" width="160" height="230" as="geometry" />
         </mxCell>
-        <mxCell id="nYIQgTiBqxoL8qn_KWrK-38" value="+ ID&#xa;+ Indice &#xa;+ Nombre&#xa;+ Descripcion&#xa;+ FK_Curso&#xa;+ Fecha_Creacion&#xa;+ Estado&#xa;+ Driping&#xa;+ Driping_Config&#xa;+ Status bool&#xa;+ Creado_Por&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="nYIQgTiBqxoL8qn_KWrK-37" vertex="1">
-          <mxGeometry y="30" width="160" height="170" as="geometry" />
+        <mxCell id="nYIQgTiBqxoL8qn_KWrK-38" value="+ ID&#xa;+ Indice &#xa;+ Nombre&#xa;+ Descripcion&#xa;+ FK_Curso&#xa;+ Fecha_Creacion&#xa;+ Estado&#xa;+ Dripping_Estado&#xa;+ Dripping_Dia&#xa;+ Dripping_Fecha&#xa;+ Status bool&#xa;+ Creado_Por&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="nYIQgTiBqxoL8qn_KWrK-37" vertex="1">
+          <mxGeometry y="30" width="160" height="200" as="geometry" />
         </mxCell>
         <mxCell id="nYIQgTiBqxoL8qn_KWrK-41" value="Clase" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="150" y="740" width="160" height="160" as="geometry" />
