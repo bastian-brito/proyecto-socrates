@@ -7,7 +7,7 @@ from Modelo.Modelos import User
 def validate_email_2(form, field):
 			user = User.query.filter_by(email=field.data).first()
 			if user is not None:
-				raise ValidationError('Email Malulo')
+				raise ValidationError('Porfavor use una diferente dirección de email.')
 
 class IngresaUsuario(Form):
 		correo           	=	EmailField("correo electrónico",validators = [validators.InputRequired(),validate_email_2])
@@ -20,9 +20,3 @@ class IngresaUsuario(Form):
 									validators.EqualTo("contraseña", message="Contraseñas deben coincidir")],
 									id="confirma_contraseña")
 		estado				=	True
-
-		def validate_email(self, correo):
-			user = User.query.filter_by(email=correo.data).first()
-			if user is not None:
-				raise ValidationError('Porfavor use una diferente dirección de email.')
-		

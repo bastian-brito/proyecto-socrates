@@ -8,9 +8,9 @@ from functools import wraps
 from formulario import IngresaUsuario
 #formulario
 #from .form_usuario import SignupForm, LoginForm
-from werkzeug.urls import url_parse
+#from werkzeug.urls import url_parse
 from app import login_manager
-from app import db
+#from app import db
 #from __main__ import db
 
 def roles_required(roles: list, require_all=False):
