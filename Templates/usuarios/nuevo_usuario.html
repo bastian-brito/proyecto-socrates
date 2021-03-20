@@ -7,6 +7,8 @@
 </div>
 
 <form action="{{ url_for('usuarios.crear_usuario') }}" method="post">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>	
+
 	<div class="form-floating mb-3">
 		<input type="text" class="form-control" id="floatingNombre" name="nombres" placeholder="Juanito Andrés">
 		<label for="floatingNombre">Nombres</label>

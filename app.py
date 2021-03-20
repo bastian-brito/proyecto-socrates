@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '7110c8ae51a4b5af97be6534caef90e4bb9bdcb3380af008f90b23a5d1616bf319bc298105da20fe'
 #Protección de ataque csrf
 csrf = CSRFProtect(app)
-app.config['SERVER_NAME']='sitio.tld:5000'
+app.config['SERVER_NAME']='127.0.0.1:5000'
 #app.url_map.default_subdomain = "www"
 
 login_manager = LoginManager(app)

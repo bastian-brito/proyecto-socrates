@@ -4,6 +4,7 @@
 {% block body %}
 <div class="container">
 	<form class="row g-3" action="{{ url_for('usuarios.login') }}" method="post">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 		<div class="col-auto">
 			<label for="email" class="visually-hidden">Email</label>
 			<input type="text" class="form-control-plaintext" id="email" name="Email" placeholder="email@example.com">

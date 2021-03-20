@@ -5,7 +5,8 @@ from . import usuarios_bp
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from functools import wraps
-from formulario import IngresaUsuario
+#from Controladores.formulario import IngresaUsuario
+from .formulario import IngresaUsuario
 #formulario
 #from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
@@ -34,7 +35,7 @@ def roles_required(roles: list, require_all=False):
         return decorated_view
     return _roles_required
 
-@roles_required(['Admin'])
+#@roles_required(['Admin'])
 @usuarios_bp.route("/nuevo_usuario", methods = ['GET'])
 def nuevo_usuario():
     roles = Role.query.order_by(Role.fecha_creacion.asc()).all()  
@@ -63,13 +64,13 @@ def update():
 
 
 @usuarios_bp.route("/lista_usuarios", methods = ['GET'])
-@roles_required(['Admin'])
+#@roles_required(['Admin'])
 def lista_usuarios():
     usuarios = User.query.order_by(User.fecha_creacion.asc()).all() 
     return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
 
 @usuarios_bp.route("/nuevo_usuario", methods=["POST"])
-@roles_required(['Admin'])
+#@roles_required(['Admin'])
 def crear_usuario():
     nombres          = request.form.get("nombres")  
     apellido_paterno = request.form.get("apellido_paterno")
@@ -105,19 +106,20 @@ def registrar_usuario():
                     apellido_paterno =  form.apellido_paterno.data,
                     apellido_materno =  form.apellido_materno.data,
                     email =  form.correo.data,
+                    roles = form.roles.data,
                     password =  form.contraseña.data,
                     telefono =  form.telefono.data,
                     estado =  True)
-        admin_role = Role.query.get(1)
-        user_role = Role.query.get(2)  
-        usuario.roles = [admin_role, user_role, ]
+        #admin_role = Role.query.get(1)
+        #user_role = Role.query.get(2)  
+        #usuario.roles = [admin_role, user_role, ]
         usuario.set_password(usuario.password)
         usuario.save()
         # Dejamos al usuario logueado
         login_user(usuario, remember=True)        
         flash('Registro completo')
         return redirect("/")      
-    return render_template('nuevo_usuario_wtform.html', form=form)
+    return render_template('usuarios/nuevo_usuario_wtform.html', form=form)
 
 @usuarios_bp.route('/login', methods=['GET', 'POST'])
 def login():
