@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-18T22:33:57.796Z" agent="5.0 (Windows)" etag="ZW42pv88WAc4FIpk2O6V" version="14.4.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-20T22:10:25.256Z" agent="5.0 (Windows)" etag="FryRyNM4iuWSlReVyj-s" version="14.4.9" type="github">
   <diagram id="GJdVQauJxbt9vsnNB0w8" name="Page-1">
     <mxGraphModel dx="1695" dy="461" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -183,7 +183,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="yWdKyq-woqG9-aWOtmhJ-5" value="Pago Suscripción" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
-          <mxGeometry x="-640" y="730" width="250" height="140" as="geometry" />
+          <mxGeometry x="-685" y="740" width="250" height="140" as="geometry" />
         </mxCell>
         <mxCell id="yWdKyq-woqG9-aWOtmhJ-6" value="+ FK_Contrato_Escuela&#xa;+ Nro_Pago&#xa;+ Fecha_cobro&#xa;+ Fecha_pago&#xa;+ Estado (Por pagar/moroso/pagado)&#xa;+ Fecha_creación&#xa;&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="yWdKyq-woqG9-aWOtmhJ-5" vertex="1">
           <mxGeometry y="30" width="250" height="110" as="geometry" />
@@ -286,19 +286,19 @@
         <mxCell id="7MxQAEDquhRGHO_Ch0mA-5" value="&lt;div&gt;Módulo se ve?&lt;br&gt;&lt;/div&gt;&lt;div&gt;SI:&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(Drip == 0) o &lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(Dripp == 1 y (fecha.hoy() -drip_fecha &amp;gt;=0)) o&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;(Dripp == 2 y (fecha.hoy() - fecha.matricula() &amp;gt;= drip_dias))&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Modulo Matricula&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;Doble Filtro, en vista html aplicar misma logica y en Controlador también aplicar logica antes de mostrar algun modulo completo&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;" parent="1" vertex="1">
           <mxGeometry x="-700" y="1410" width="630" height="220" as="geometry" />
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-1" value="Progreso_Curso" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-1" value="Progreso_Curso" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="370" y="570" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-2" value="+ FK_Matricula&#xa;+ Ultima clase completada&#xa;+ Clases_Completadas&#xa;+ Módulos_Completadas&#xa;+ Porcentaje_Completado&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="1n7-fa2ee-QXQmbpzvrU-1">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-2" value="+ FK_Matricula&#xa;+ Ultima clase completada&#xa;+ Clases_Completadas&#xa;+ Módulos_Completadas&#xa;+ Porcentaje_Completado&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="1n7-fa2ee-QXQmbpzvrU-1" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-3" value="Evaluacion_Curso" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" vertex="1" parent="1">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-3" value="Evaluacion_Curso" style="swimlane;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;rounded=1;fontSize=14;fontStyle=0;strokeWidth=2;resizeParent=0;resizeLast=1;shadow=0;dashed=0;align=center;" parent="1" vertex="1">
           <mxGeometry x="370" y="430" width="160" height="120" as="geometry" />
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-4" value="+ FK_Matricula&#xa;+ continuar&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" vertex="1" parent="1n7-fa2ee-QXQmbpzvrU-3">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-4" value="+ FK_Matricula&#xa;+ continuar&#xa;&#xa;" style="align=left;strokeColor=none;fillColor=none;spacingLeft=4;fontSize=12;verticalAlign=top;resizable=0;rotatable=0;part=1;" parent="1n7-fa2ee-QXQmbpzvrU-3" vertex="1">
           <mxGeometry y="30" width="160" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="1n7-fa2ee-QXQmbpzvrU-4" target="L5kdA-Ssn5EGo2ny85at-3">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="1n7-fa2ee-QXQmbpzvrU-4" target="L5kdA-Ssn5EGo2ny85at-3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
               <mxPoint x="350" y="505" />
@@ -306,7 +306,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="1n7-fa2ee-QXQmbpzvrU-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" edge="1" parent="1" source="1n7-fa2ee-QXQmbpzvrU-2" target="L5kdA-Ssn5EGo2ny85at-3">
+        <mxCell id="1n7-fa2ee-QXQmbpzvrU-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;" parent="1" source="1n7-fa2ee-QXQmbpzvrU-2" target="L5kdA-Ssn5EGo2ny85at-3" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="300" y="400" as="targetPoint" />
             <Array as="points">
