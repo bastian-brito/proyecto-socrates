@@ -100,33 +100,88 @@ class Escuela(db.Model):
             db.session.add(self)
         db.session.commit()
 
-class Plan(db.Model):
-    __tablename__   = 'planes'
+#Cambio nombre de clase desde Plan a Suscripcion
+class Suscripcion(db.Model):
+    __tablename__   = 'suscripciones'
     id              = db.Column(db.Integer(), primary_key=True)
-    escuela_id      = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    #No ocupa esta relación mala relacion por eso la Quite
+    #escuela_id      = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
     fecha_creacion  = db.Column(db.DateTime, default=datetime.now)
     publicado       = db.Column(db.Boolean, nullable=False)
     name            = db.Column(db.String(30), nullable=False)
     precio          = db.Column(db.String(30), nullable=False)
-    descripcion     = db.Column(db.String(60), nullable=False)
-    caracteristicas = db.Column(db.String(60), nullable=False)
+    #Cambio nombre de columna descripcion a Tipo
+    tipo            = db.Column(db.String(60), nullable=False)
+    #Cambio nombre de columna caracteristicas a Nivel
+    nivel           = db.Column(db.String(60), nullable=False)
     estado          = db.Column(db.Boolean, nullable=False)
     planes_escuelas = db.relationship('Escuela', secondary='planes_escuelas')
 
-class Plan_Escuela(db.Model):
-    __tablename__  = 'planes_escuelas'
-    id             = db.Column(db.Integer(), primary_key=True)
-    plan_id        = db.Column(db.Integer(), db.ForeignKey('planes.id', ondelete='CASCADE'))
-    escuela_id     = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
-    fecha_creacion = db.Column(db.DateTime, default=datetime.now)
-    estado         = db.Column(db.Boolean, nullable=False)
-    pago_escuela   = db.relationship('Pago_Escuela', backref='planes_escuelas', lazy=True)
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+#Cambio nombre Plan_Escuela a Suscripcion_Escuela
+class Suscripcion_Escuela(db.Model):
+    __tablename__    = 'suscripciones_escuelas'
+    id               = db.Column(db.Integer(), primary_key=True)
+    plan_id          = db.Column(db.Integer(), db.ForeignKey('planes.id', ondelete='CASCADE'))
+    escuela_id       = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    fecha_creacion   = db.Column(db.DateTime, default=datetime.now)    
+    estado           = db.Column(db.Boolean, nullable=False)
+    validez_contrato = db.Column(db.String(60), nullable=False)
+    pago_escuela     = db.relationship('Pago_Escuela', backref='planes_escuelas', lazy=True)
+    
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
 
 class Pago_Escuela(db.Model):
     __tablename__       = 'pagos_escuelas'
     id                  = db.Column(db.Integer(), primary_key=True)
     planes_escuelas_id  = db.Column(db.Integer(), db.ForeignKey('planes_escuelas.id', ondelete='CASCADE'))
+    numero_pago         = db.Column(db.Integer, nullable=False)
     fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    #Cuando se debe cobrar el pago
+    # Ejemplo start_date = datetime.datetime.now() - datetime.timedelta(30)
+    fecha_cobro         = db.Column(db.DateTime, nullable=False)
+    #Cuando se pago efectivamente
+    fecha_pago          = db.Column(db.DateTime, nullable=False)
     publicado           = db.Column(db.Boolean, nullable=False)
+    estado_pago         = db.Column(db.String(60), nullable=False)
     estado              = db.Column(db.Boolean, nullable=False)
-    
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Alumno(db.Model):
+    __tablename__       = 'alumnos'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    usuario_id          = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
+    escuela_id          = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Curso(db.Model):
+    __tablename__       = 'cursos'
+    id                  = db.Column(db.Integer(), primary_key=True)    
+    escuela_id          = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    name                = db.Column(db.String(30), nullable=False)
+    descripcion         = db.Column(db.String(60), nullable=False)
+    estado              = db.Column(db.Boolean, nullable=False)
+
+class Tag(db.Model):
+    __tablename__       = 'tags'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    name                = db.Column(db.String(30), nullable=False)
+    estado              = db.Column(db.Boolean, nullable=False)
