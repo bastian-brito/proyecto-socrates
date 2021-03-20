@@ -1,4 +1,3 @@
-
 from Modelo.Modelos import User, Role
 #Aqui se importa la creación de referencia BluePrint de Usuario
 from . import usuarios_bp
