@@ -109,7 +109,7 @@ class Suscripcion(db.Model):
     fecha_creacion  = db.Column(db.DateTime, default=datetime.now)
     publicado       = db.Column(db.Boolean, nullable=False)
     name            = db.Column(db.String(30), nullable=False)
-    precio          = db.Column(db.String(30), nullable=False)
+    precio          = db.Column(db.Integer, nullable=False)
     #Cambio nombre de columna descripcion a Tipo
     tipo            = db.Column(db.String(60), nullable=False)
     #Cambio nombre de columna caracteristicas a Nivel
@@ -164,6 +164,7 @@ class Alumno(db.Model):
     usuario_id          = db.Column(db.Integer(), db.ForeignKey('users.id', ondelete='CASCADE'))
     escuela_id          = db.Column(db.Integer(), db.ForeignKey('escuelas.id', ondelete='CASCADE'))
     fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    estado              = db.Column(db.Boolean, nullable=False)
 
     def save(self):
         if not self.id:
@@ -179,9 +180,126 @@ class Curso(db.Model):
     descripcion         = db.Column(db.String(60), nullable=False)
     estado              = db.Column(db.Boolean, nullable=False)
 
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
 class Tag(db.Model):
     __tablename__       = 'tags'
     id                  = db.Column(db.Integer(), primary_key=True)
     fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
     name                = db.Column(db.String(30), nullable=False)
     estado              = db.Column(db.Boolean, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Tag_Curso(db.Model):
+    __tablename__       = 'tags_cursos'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    curso_id            = db.Column(db.Integer(), db.ForeignKey('cursos.id', ondelete='CASCADE'))
+    tag_id              = db.Column(db.Integer(), db.ForeignKey('tags.id', ondelete='CASCADE'))
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    estado              = db.Column(db.Boolean, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Modulo(db.Model):
+    __tablename__       = 'modulos'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    curso_id            = db.Column(db.Integer(), db.ForeignKey('cursos.id', ondelete='CASCADE'))    
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    estado              = db.Column(db.Boolean, nullable=False)
+    indice              = db.Column(db.Integer, nullable=False)
+    name                = db.Column(db.String(30), nullable=False)
+    descripcion         = db.Column(db.String(60), nullable=False)
+    dripping_estado     = db.Column(db.String(30), nullable=False)
+    dripping_dia        = db.Column(db.Integer, nullable=False)
+    dripping_fecha      = db.Column(db.DateTime, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Clase(db.Model):
+    __tablename__       = 'clases'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    modulo_id           = db.Column(db.Integer(), db.ForeignKey('modulos.id', ondelete='CASCADE'))    
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    estado              = db.Column(db.Boolean, nullable=False)
+    indice              = db.Column(db.Integer, nullable=False)
+    name                = db.Column(db.String(30), nullable=False)
+    descripcion         = db.Column(db.String(60), nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+###
+# Queda definir que parametros sin necesarios para el tipo de oferta (G, PU, P y S) por ende pueden Null
+###
+class Oferta_Curso(db.Model):
+    __tablename__       = 'ofertas_cursos'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    curso_id            = db.Column(db.Integer(), db.ForeignKey('cursos.id', ondelete='CASCADE'))      
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    estado              = db.Column(db.Boolean, nullable=False)
+    name                = db.Column(db.String(30), nullable=False)
+    #Gratuito, Pago Unico, Plan y Suscripción
+    tipo_de_oferta      = db.Column(db.String(30), nullable=False)
+    descripcion         = db.Column(db.String(60), nullable=False)
+    precio              = db.Column(db.Integer, nullable=False)
+    #ej: se tiene acceso durante 2 meses, "fecha de vencimiento"
+    duracion            = db.Column(db.DateTime, nullable=False)
+    inicio              = db.Column(db.DateTime, nullable=False)
+    #Periodo de prueba definir si es en Dias, semanas o meses
+    periodo_prueba      = db.Column(db.Integer, nullable=False)
+    periodo_de_cobro    = db.Column(db.Integer, nullable=False)
+    cantidad_de_cobros  = db.Column(db.Integer, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Matricula(db.Model):
+    __tablename__       = 'matriculas'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    alumno_id           = db.Column(db.Integer(), db.ForeignKey('alumnos.id', ondelete='CASCADE'))
+    oferta_curso        = db.Column(db.Integer(), db.ForeignKey('ofertas_cursos.id', ondelete='CASCADE'))
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    valido              = db.Column(db.String(30), nullable=False)
+    estado              = db.Column(db.Boolean, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
+
+class Pago_Matricula(db.Model):
+    __tablename__       = 'pagos_matriculas'
+    id                  = db.Column(db.Integer(), primary_key=True)
+    matricula_id        = db.Column(db.Integer(), db.ForeignKey('matriculas.id', ondelete='CASCADE'))
+    numero_pago         = db.Column(db.Integer, nullable=False)
+    fecha_creacion      = db.Column(db.DateTime, default=datetime.now)
+    #Cuando se debe cobrar el pago
+    # Ejemplo start_date = datetime.datetime.now() - datetime.timedelta(30)
+    fecha_cobro         = db.Column(db.DateTime, nullable=False)
+    #Cuando se pago efectivamente
+    fecha_pago          = db.Column(db.DateTime, nullable=False)
+    publicado           = db.Column(db.Boolean, nullable=False)
+    estado_pago         = db.Column(db.String(60), nullable=False)
+    estado              = db.Column(db.Boolean, nullable=False)
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
