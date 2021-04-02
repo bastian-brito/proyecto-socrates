@@ -71,72 +71,29 @@ def lista_usuarios():
 @usuarios_bp.route("/lista_usuarios_wtf", methods = ['GET'])
 #@roles_required(['Admin'])
 def lista_usuarios_wtf():
-    
-    # usuarios = User.query.order_by(User.fecha_creacion.asc()).all()
-    # table = Formulario_Usuarios.table
+
     items = User.query.all()
-    usuarios = User.query.all() 
-#    items_roles = UserRoles.query.all()
-#    table_roles = ListaRoles(items_roles)
-    
-    #csrf_token = csrf_token()
+    usuarios = User.query.all()
     tabla_lista_usuarios = ListaUsuarios(items)
-    #datos = User.query.get(id)
-    #form = IngresaUsuario(obj=usuarios)
-    #form.populate_obj(usuarios) 
-    # return render_template("usuarios/lista_usuarios_wtf.html", usuarios=usuarios, table=table)
     return render_template("usuarios/lista_usuarios_wtf.html", tabla_lista_usuarios=tabla_lista_usuarios, usuarios=usuarios)
 
 @usuarios_bp.route('/update_wtf/<int:id>', methods=['GET', 'POST'])
 def update_wtf(id):
-    # datos = User.get_element_by_id(id)
-    # form = IngresaUsuario(obj=datos)
-    # form.populate_obj(datos)
-    #form = EditaUsuario(request.form) 
 
     usuario = User.query.get(id)
-    #usuario = db.session.query(User).get(request.form.get(id))
-    # db.session.query(User).get(request.form.get(id))
     form = EditaUsuario(request.form, obj = usuario)
     print('form.name.data (pre process): '+form.name.data)
     #form.process(obj=usuario)
 
     print('usuario.name: '+usuario.name)
-    # if form.validate() and request.method == 'POST':
     if form.validate() and request.method == 'POST':
         print('form.name.data (pre populate): '+form.name.data)
         form.populate_obj(usuario)
-        # db.session.merge(usuario)
         db.session.commit()
-        print('form.name.data: '+form.name.data)
-        print('usuario.name: '+usuario.name)        
         print(form.errors)            
-        # usuario.commit()
         return redirect('/lista_usuarios_wtf')
 
     return render_template('usuarios/update.html', form=form, usuario=usuario)
-    # return redirect(url_for('usuarios.lista_wtf'))
-    #return
-
-# @usuarios_bp.route('/update_wtf/<int:id>', methods=['GET', 'POST'])
-# def commit_update_wtf(id):
-    
-#     usuario = User.query.get(id)
-#     #usuario = db.session.query(User).get(request.form.get(id))
-#     db.session.query(User).get(request.form.get(id))
-#     form = EditaUsuario(request.form, object = usuario)
-#     if form.validate() and request.method == 'POST':
-        
-#         form.populate_obj(usuario)
-#         db.session.merge(usuario)
-#         db.session.commit()
-#         return redirect(url_for('usuarios.lista_wtf'))
-
-#     return render_template('usuarios/update.html', form=form, usuario=usuario)
-    #return redirect(url_for('usuarios.lista_wtf'))
-    #return
-
-
 
 
 @usuarios_bp.route("/nuevo_usuario", methods=["POST"])
