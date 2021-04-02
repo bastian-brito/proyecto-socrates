@@ -1,12 +1,12 @@
 
-from Modelo.Modelos import User, Role
+from Modelo.Modelos import User, Role, UserRoles
 #Aqui se importa la creación de referencia BluePrint de Usuario
 from . import usuarios_bp
 from flask import render_template, request, redirect, url_for, flash
 from flask_login import current_user, login_user, logout_user
 from functools import wraps
 #from Controladores.formulario import IngresaUsuario
-from .formulario import IngresaUsuario
+from .Formulario_Usuarios import IngresaUsuario, ListaUsuarios, EditaUsuario
 #formulario
 #from .form_usuario import SignupForm, LoginForm
 from werkzeug.urls import url_parse
@@ -50,7 +50,7 @@ def update():
         usuario.apellido_paterno = request.form['apellido_paterno']
         usuario.apellido_materno = request.form['apellido_materno']
         usuario.email            = request.form['correo']
-        usuario.fk_rol           = request.form['rol_aplicacion']
+        usuario.roles            = request.form['rol_aplicacion']
         usuario.password         = request.form['contraseña']
         if request.form.get('estado') == 'True':
             usuario.estado = 1
@@ -62,12 +62,82 @@ def update():
  
         return redirect(url_for('usuarios.lista_usuarios'))
 
-
 @usuarios_bp.route("/lista_usuarios", methods = ['GET'])
 #@roles_required(['Admin'])
-def lista_usuarios():
+def lista_usuarios():   
     usuarios = User.query.order_by(User.fecha_creacion.asc()).all() 
     return render_template("usuarios/lista_usuarios.html", usuarios=usuarios)
+
+@usuarios_bp.route("/lista_usuarios_wtf", methods = ['GET'])
+#@roles_required(['Admin'])
+def lista_usuarios_wtf():
+    
+    # usuarios = User.query.order_by(User.fecha_creacion.asc()).all()
+    # table = Formulario_Usuarios.table
+    items = User.query.all()
+    usuarios = User.query.all() 
+#    items_roles = UserRoles.query.all()
+#    table_roles = ListaRoles(items_roles)
+    
+    #csrf_token = csrf_token()
+    tabla_lista_usuarios = ListaUsuarios(items)
+    #datos = User.query.get(id)
+    #form = IngresaUsuario(obj=usuarios)
+    #form.populate_obj(usuarios) 
+    # return render_template("usuarios/lista_usuarios_wtf.html", usuarios=usuarios, table=table)
+    return render_template("usuarios/lista_usuarios_wtf.html", tabla_lista_usuarios=tabla_lista_usuarios, usuarios=usuarios)
+
+@usuarios_bp.route('/update_wtf/<int:id>', methods=['GET', 'POST'])
+def update_wtf(id):
+    # datos = User.get_element_by_id(id)
+    # form = IngresaUsuario(obj=datos)
+    # form.populate_obj(datos)
+    #form = EditaUsuario(request.form) 
+
+    usuario = User.query.get(id)
+    #usuario = db.session.query(User).get(request.form.get(id))
+    # db.session.query(User).get(request.form.get(id))
+    form = EditaUsuario(request.form, obj = usuario)
+    print('form.name.data (pre process): '+form.name.data)
+    #form.process(obj=usuario)
+
+    print('usuario.name: '+usuario.name)
+    # if form.validate() and request.method == 'POST':
+    if form.validate() and request.method == 'POST':
+        print('form.name.data (pre populate): '+form.name.data)
+        form.populate_obj(usuario)
+        # db.session.merge(usuario)
+        db.session.commit()
+        print('form.name.data: '+form.name.data)
+        print('usuario.name: '+usuario.name)        
+        print(form.errors)            
+        # usuario.commit()
+        return redirect('/lista_usuarios_wtf')
+
+    return render_template('usuarios/update.html', form=form, usuario=usuario)
+    # return redirect(url_for('usuarios.lista_wtf'))
+    #return
+
+# @usuarios_bp.route('/update_wtf/<int:id>', methods=['GET', 'POST'])
+# def commit_update_wtf(id):
+    
+#     usuario = User.query.get(id)
+#     #usuario = db.session.query(User).get(request.form.get(id))
+#     db.session.query(User).get(request.form.get(id))
+#     form = EditaUsuario(request.form, object = usuario)
+#     if form.validate() and request.method == 'POST':
+        
+#         form.populate_obj(usuario)
+#         db.session.merge(usuario)
+#         db.session.commit()
+#         return redirect(url_for('usuarios.lista_wtf'))
+
+#     return render_template('usuarios/update.html', form=form, usuario=usuario)
+    #return redirect(url_for('usuarios.lista_wtf'))
+    #return
+
+
+
 
 @usuarios_bp.route("/nuevo_usuario", methods=["POST"])
 #@roles_required(['Admin'])
@@ -81,7 +151,7 @@ def crear_usuario():
     estado           = True
     usuario          = User(name=nombres,
                             apellido_paterno=apellido_paterno,
-                            #fk_rol = fk_rol, 
+                             
                             apellido_materno=apellido_materno,
                             email=correo,
                             password=password,
@@ -99,14 +169,14 @@ def crear_usuario():
 
 @usuarios_bp.route("/nuevo_usuario_wtform", methods = ['GET', 'POST'])
 def registrar_usuario():
-    form = IngresaUsuario(request.form)    
+    form = IngresaUsuario(request.form) 
     if request.method ==  'POST' and form.validate():
-        usuario =   User(                
+        usuario =   User(
                     name = form.nombres.data,                    
                     apellido_paterno =  form.apellido_paterno.data,
                     apellido_materno =  form.apellido_materno.data,
                     email =  form.correo.data,
-                    roles = form.roles.data,
+                    #roles = [Role.query.get(form.roles.data), ],
                     password =  form.contraseña.data,
                     telefono =  form.telefono.data,
                     estado =  True)
@@ -114,6 +184,8 @@ def registrar_usuario():
         #user_role = Role.query.get(2)  
         #usuario.roles = [admin_role, user_role, ]
         usuario.set_password(usuario.password)
+        usuario.save()
+        usuario.roles = [Role.query.get(form.roles.data), ]
         usuario.save()
         # Dejamos al usuario logueado
         login_user(usuario, remember=True)        
@@ -142,4 +214,7 @@ def logout():
 @login_manager.user_loader
 def load_user(user_id):
     return User.get_by_id(int(user_id))
+
+
+
 

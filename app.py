@@ -18,6 +18,7 @@ login_manager = LoginManager(app)
 login_manager.init_app(app)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://root:@localhost/flask'
+print("SQLALCHEMY_DATABASE_URI: "+app.config["SQLALCHEMY_DATABASE_URI"])
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 from Modelo.Modelos import *

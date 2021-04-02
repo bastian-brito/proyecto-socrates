@@ -8,7 +8,11 @@ Created on Tue Jan 26 17:49:37 2021
 from datetime import datetime
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+
+#para migrate
 #from app import db
+
+#para funcionar
 from __main__ import db
 
 

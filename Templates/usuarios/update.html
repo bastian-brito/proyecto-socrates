@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+
+{% block body %}	
+
+<div class="container">
+	<h2 class="text-center py-4">	EDICIÓN DE USUARIOS</h2>
+
+</div>
+
+
+<div class="container">
+
+	{% from "_formhelpers.html" import render_field %}
+	<form action="{{url_for('usuarios.update_wtf', id=usuario.id)}}" method="POST">
+
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+
+		{{ render_field(form.name) }}
+		{{ render_field(form.apellido_paterno) }}
+		{{ render_field(form.apellido_materno) }}
+		{{ render_field(form.email) }}
+		{{ render_field(form.telefono) }}
+		{# { render_field(form.roles), value=usuario.roles selected } #}
+		{# { render_field(form.contraseña) } #}
+		{# { render_field(form.confirma_contraseña) } #}
+
+
+		{# { render_field(form.nombres, value=usuario.name) }}s
+		{{ render_field(form.apellido_paterno, value=usuario.apellido_paterno) }}
+		{{ render_field(form.apellido_materno, value=usuario.apellido_materno) }}
+		{{ render_field(form.correo, value=usuario.email) }}
+		{{ render_field(form.telefono, value=usuario.telefono) }}
+		{ { render_field(form.roles), value=usuario.roles selected } }
+		{{ render_field(form.contraseña) }}
+		{{ render_field(form.confirma_contraseña) }#}
+
+		<button class="btn btn-primary" type="submit">Update</button>
+	</form>
+</div>
+
+
+{% endblock %}
